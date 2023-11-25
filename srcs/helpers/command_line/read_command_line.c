@@ -6,7 +6,7 @@
 //signal(SIGINT, signal_cmd);
 //signal(SIGQUIT, SIG_IGN);
 
-void read_command_line(char **line, t_cmd_line **cmd_line)
+void read_command_line(char **line)
 {
 	if (line == NULL)
 		return ;
@@ -20,7 +20,6 @@ void read_command_line(char **line, t_cmd_line **cmd_line)
 		ft_putstr_fd("\b\b", 1);
 		ft_putendl_fd("exit 👋", 1);
         delete_envp();
-        delete_cmd_line(cmd_line);
 		exit(0);
 	}
 	if ((*line) && (*line)[0] != '\0') 

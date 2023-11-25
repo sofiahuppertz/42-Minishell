@@ -21,8 +21,10 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		init_signals();	
-        read_command_line(&str, &full_cmd);
-        //if (parsing(str, &full_cmd))
+        read_command_line(&str);
+        if (parsing(str, &full_cmd))
+			;
+		
             //if (!execution())
             //    error_exec();
 		ft_memdel((void*)str);
