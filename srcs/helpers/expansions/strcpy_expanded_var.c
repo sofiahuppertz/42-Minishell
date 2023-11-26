@@ -10,7 +10,7 @@ static  char *get_expanded_var(char *arg, int idx, t_env *env)
 	i = 0;
 	if (arg[idx] == '?')
 	{
-		var_value = ft_itoa(g_sig.exit_status);
+		var_value = ft_itoa(g_sig.status);
 		return (var_value);
 	}
 	if (ft_isdigit(arg[idx]))

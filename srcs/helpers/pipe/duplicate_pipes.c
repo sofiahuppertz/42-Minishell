@@ -4,7 +4,7 @@
 static int print_pipe_error(void)
 {
 	ft_putstr_fd("minishell: syntax error near: unexpected token `|'\n", 2);
-	g_sig.exit_status = 258;
+	g_sig.status = 258;
 	return (1);
 }
 

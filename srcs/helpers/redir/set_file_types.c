@@ -8,9 +8,9 @@ static t_type  file_type(t_type delim, int *file)
 	if (delim == INPUT)
 		return (FILE_IN);
 	else if (delim == TRUNC)
-		return (FILE_OUT);
+		return (FILE_TRUNC);
 	else if (delim == APPEND)
-		return (FILE_OUT_OVER);
+		return (FILE_APPEND);
 	else if (delim == HEREDOC)
 		return (LIMIT);
 	return (NON);

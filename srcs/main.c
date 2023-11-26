@@ -10,24 +10,15 @@ int	main(int argc, char **argv, char **envp)
 
 	full_cmd = NULL;
 	init_envp(envp);
-	//print envp
-	//t_env *tmp = *get_adress_envp();
-	//while (tmp)
-	//{
-	//	printf(" %s\n", tmp->str);
-	//	printf("declare = %d\n", tmp->declare);
-	//	tmp = tmp->next;
-	//}
-	while (1)
+	while (!g_sig.exit_shell)
 	{
 		init_signals();	
         read_command_line(&str);
-        if (parsing(&str, &full_cmd))
-			;
-		
-            //if (!execution())
-            //    error_exec();
-		//ft_memdel((void*)str);
+		if (str != NULL)
+			parsing(&str, &full_cmd);
+		if (g_sig.status != 258 && full_cmd != NULL)
+			execution(&full_cmd);
+		ft_memdel((void*)str); //Not sure about this but I think yeah
 		str = NULL;
 		delete_cmd_line(&full_cmd);
 	}

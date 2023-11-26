@@ -3,12 +3,9 @@
 
 int parsing(char **str, t_cmd_line **line)
 {
-	//int	res;
-	
-    //check syntax -> double pipes, delims...
     if (!syntax_ok(*str))
     {
-        g_sig.exit_status = 258;
+        g_sig.status = 258;
         return (0);
     }
 	add_spaces_to_delims(str);

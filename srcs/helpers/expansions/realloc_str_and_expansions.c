@@ -8,7 +8,7 @@ void realloc_str_and_expansions(char **arg, t_env *envp)
     new_len = strlen_with_expansions((const char *)*arg, envp);
     x.value = ft_calloc(sizeof(char), new_len + 1);
     if (!x.value)
-        return ;
+        exit_failure();
     x.new_idx = 0;
     x.idx = 0;
     while (x.new_idx < new_len && (*arg)[x.idx])

@@ -10,7 +10,7 @@ int strlen_expanded_var(const char *arg, int idx, t_env *env)
     len = 0;
     if (arg[idx] == '?')
     {
-        buffer = ft_itoa(g_sig.exit_status);
+        buffer = ft_itoa(g_sig.status);
         len = ft_strlen(buffer);   
     }
     else if (ft_isdigit(arg[idx]))
