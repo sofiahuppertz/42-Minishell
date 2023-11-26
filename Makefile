@@ -8,7 +8,8 @@ CFLAGS = -Wall -Wextra -Werror -g $(INCLUDES)
 
 LIBFT = headers/Libft/libft.a
 
-HELPERS = cmd_line_t/add_cmd_to_list.c \
+HELPERS = builtins/is_builtin.c \
+	cmd_line_t/add_cmd_to_list.c \
 	cmd_line_t/break_simple_cmds.c \
 	cmd_line_t/cmd_list_add_back.c \
 	cmd_line_t/strlen_simple_cmd.c \
@@ -26,8 +27,17 @@ HELPERS = cmd_line_t/add_cmd_to_list.c \
 	quotes/find_open_quotes.c \
 	quotes/quotes_are_closed.c \
 	redir/invalid_redirections.c \
+	redir/is_delim.c \
 	signals/init_signals.c \
 	signals/signal_handlers.c \
+	spaces/add_spaces_to_delims.c \
+	spaces/strcpy_adding_spaces.c \
+	spaces/strlen_with_spaces.c \
+	tokens/create_node.c \
+	tokens/get_next_token.c \
+	tokens/get_token_length.c \
+	tokens/init_type.c \
+	tokens/tokenize.c \
 
 PARSING = parsing.c \
 		syntax_ok.c \

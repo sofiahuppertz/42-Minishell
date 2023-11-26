@@ -22,12 +22,13 @@ int	main(int argc, char **argv, char **envp)
 	{
 		init_signals();	
         read_command_line(&str);
-        if (parsing(str, &full_cmd))
+        if (parsing(&str, &full_cmd))
 			;
 		
             //if (!execution())
             //    error_exec();
-		ft_memdel((void*)str);
+		//ft_memdel((void*)str);
+		str = NULL;
 		delete_cmd_line(&full_cmd);
 	}
     (void)argc;

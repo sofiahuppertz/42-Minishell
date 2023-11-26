@@ -1,14 +1,48 @@
 
 #include "../../../headers/minishell.h"
 
-int	tokenize(t_cmd_line **head)
+
+static int	str_to_tokens(t_cmd_line **simple_cmd, char *str)
+{
+    t_token	*arg;
+    t_token *prev_arg;
+    int		index;
+
+    if (!str || str[0] == '\0')
+    {
+        (*simple_cmd)->first_token = NULL;
+        return (1);
+    }
+    index = 0;
+    index = ft_add_while_true(index, str, &ft_iswhitespace);
+    arg = get_next_token(str, &index);
+    if (!arg)
+        return (0);
+    (*simple_cmd)->first_token = arg;
+    prev_arg = arg;
+    index = ft_add_while_true(index, str, &ft_iswhitespace);
+    while (str[index])
+    {
+        arg = get_next_token(str, &index);
+        if (!arg)
+            return (0);
+        prev_arg->next = arg;
+        prev_arg = arg;
+        index = ft_add_while_true(index, str, &ft_iswhitespace);
+    }
+    if (prev_arg)
+        prev_arg->next = NULL;
+    return (1); 
+}
+
+int	tokenize(t_cmd_line **cmd_list)
 {
 	t_cmd_line	*simple_cmd;
 
-	simple_cmd = *head;
+	simple_cmd = *cmd_list;
 	while (simple_cmd)
 	{
-		string_to_tokens(&simple_cmd);
+		str_to_tokens(&simple_cmd, simple_cmd->string);
 		simple_cmd = simple_cmd->next;
 	}
 	return (0);

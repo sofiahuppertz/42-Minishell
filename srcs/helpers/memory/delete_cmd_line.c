@@ -10,7 +10,7 @@ void	delete_cmd_line(t_cmd_line **cmd_line)
 		{
 			temp = (*cmd_line)->next;
 			if ((*cmd_line)->string)
-				ft_memdel((*cmd_line)->string);
+				ft_memdel((void *)(*cmd_line)->string);
 			if ((*cmd_line)->argv)
 				ft_memdel((*cmd_line)->argv);
 			if ((*cmd_line)->first_token)
