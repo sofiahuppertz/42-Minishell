@@ -13,9 +13,10 @@ int parsing(char **str, t_cmd_line **line)
     }
 	add_spaces_to_delims(str);
     break_simple_cmds(*str, line);
-	tokenize(line);
-	// ->  reorganize_tokens(line);
-	//token_list_to_array(line);
-
-	return (0);
+	if (!tokenize(line))
+        return (0);
+    organize_redirections(line);
+    expansions(line);
+	token_list_to_array(line);
+	return (1);
 }

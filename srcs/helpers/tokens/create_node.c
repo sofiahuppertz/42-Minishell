@@ -14,7 +14,7 @@ t_token *create_node(int str_len)
 		free(new_token);
 		return (NULL);
 	}
-	new_token->expanded = false;
+	new_token->expanded = 0;
 	new_token->type = NON;
 	return (new_token);
 }

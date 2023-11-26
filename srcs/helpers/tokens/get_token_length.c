@@ -15,7 +15,7 @@ int		get_token_length(char *str, int i)
         if (str[i + token_len] == ' ' && c == ' ')
             break;
         if (c == ' ' && (str[i + token_len] == '\'' || str[i + token_len] == '\"'))
-            c = str[i + token_len];
+            c = str[i + token_len];            
         else if (c != ' ' && str[i + token_len] == c)
         {
             c = ' ';

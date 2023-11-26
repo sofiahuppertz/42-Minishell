@@ -11,16 +11,16 @@ void	init_type(t_token *new)
 	if (len == 1)
 	{
 		if (new->str[0] == '<')
-			new->type = OPEN_FILE;
+			new->type = INPUT;
 		else if (new->str[0] == '>')
-			new->type = CREAT_FILE;
+			new->type = TRUNC;
 	}
 	if (len == 2)
 	{
 		if (new->str[0] == '<' && new->str[1] == '<')
-			new->type = HERE_DOC;
+			new->type = HEREDOC;
 		if (new->str[0] == '>' && new->str[1] == '>')
-			new->type = WRITE_FILE;
+			new->type = APPEND;
 	}
 	if (is_builtin(new->str))
 		new->type = BUILTIN;

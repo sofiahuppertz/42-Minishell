@@ -20,6 +20,11 @@ HELPERS = builtins/is_builtin.c \
 	envp/get_adress_envp.c \
 	envp/init_envp.c \
 	envp/init_shell_level.c \
+	expansions/expansions.c \
+	expansions/realloc_str_and_expansions.c \
+	expansions/strcpy_expanded_var.c \
+	expansions/strlen_expanded_var.c \
+	expansions/strlen_with_expansions.c \
 	memory/delete_cmd_line.c \
 	memory/delete_envp.c \
 	memory/delete_tokens.c \
@@ -28,15 +33,21 @@ HELPERS = builtins/is_builtin.c \
 	quotes/quotes_are_closed.c \
 	redir/invalid_redirections.c \
 	redir/is_delim.c \
+	redir/organize_redirections.c \
+	redir/set_file_types.c \
+	redir/set_heredoc_limit.c \
 	signals/init_signals.c \
 	signals/signal_handlers.c \
 	spaces/add_spaces_to_delims.c \
 	spaces/strcpy_adding_spaces.c \
 	spaces/strlen_with_spaces.c \
+	tokens/count_args_in_cmd.c \
+	tokens/cpy_args_in_cmd.c \
 	tokens/create_node.c \
 	tokens/get_next_token.c \
 	tokens/get_token_length.c \
 	tokens/init_type.c \
+	tokens/token_list_to_array.c \
 	tokens/tokenize.c \
 
 PARSING = parsing.c \

@@ -17,7 +17,7 @@ static int	str_to_tokens(t_cmd_line **simple_cmd, char *str)
     index = ft_add_while_true(index, str, &ft_iswhitespace);
     arg = get_next_token(str, &index);
     if (!arg)
-        return (0);
+        exit_failure();
     (*simple_cmd)->first_token = arg;
     prev_arg = arg;
     index = ft_add_while_true(index, str, &ft_iswhitespace);
@@ -25,7 +25,7 @@ static int	str_to_tokens(t_cmd_line **simple_cmd, char *str)
     {
         arg = get_next_token(str, &index);
         if (!arg)
-            return (0);
+            exit_failure();
         prev_arg->next = arg;
         prev_arg = arg;
         index = ft_add_while_true(index, str, &ft_iswhitespace);
@@ -42,8 +42,9 @@ int	tokenize(t_cmd_line **cmd_list)
 	simple_cmd = *cmd_list;
 	while (simple_cmd)
 	{
-		str_to_tokens(&simple_cmd, simple_cmd->string);
+		if (!str_to_tokens(&simple_cmd, simple_cmd->string))
+            return (0);
 		simple_cmd = simple_cmd->next;
 	}
-	return (0);
+	return (1);
 }

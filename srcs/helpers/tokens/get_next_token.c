@@ -9,7 +9,7 @@ t_token *get_next_token(char *str, int *idx)
     new_idx = 0;
     new_token = create_node(get_token_length(str, *idx));
     if (!new_token)
-        return NULL;
+        exit_failure();
     while (str[*idx] && (str[*idx] != ' ' || open_quote != ' '))
     {
         if (open_quote == ' ' && (str[*idx] == '\'' || str[*idx] == '\"')) 
