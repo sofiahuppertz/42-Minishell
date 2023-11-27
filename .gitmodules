@@ -1,0 +1,3 @@
+[submodule "headers/libft"]
+	path = headers/libft
+	url = https://github.com/sofiahuppertz/42-Libft.git
