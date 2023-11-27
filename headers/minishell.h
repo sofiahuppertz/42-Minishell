@@ -15,7 +15,7 @@
 # include <unistd.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include "Libft/headers/libft.h"
+# include "libft/Libft/headers/libft.h"
 
 # define EXPANSION -36
 # define SUCCESS 0

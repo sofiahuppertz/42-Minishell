@@ -6,7 +6,7 @@ INCLUDES = -I./headers -I./headers/Libft/headers
 CFLAGS = -Wall -Wextra -Werror -g $(INCLUDES) 
 
 
-LIBFT = headers/Libft/libft.a
+LIBFT = headers/libft/Libft/libft.a
 
 HELPERS = binaries/access_failure.c \
 	binaries/exec_binary.c \
@@ -99,7 +99,7 @@ OBJS = $(SRCS:c=o)
 all		: $(NAME)
 
 $(LIBFT):
-	make -C headers/Libft
+	make -C headers/libft/Libft
 
 $(NAME): $(OBJS) $(LIBFT)
 	cc $(CFLAGS) $(OBJS) -o $(NAME) -lreadline $(LIBFT)
@@ -111,7 +111,7 @@ fclean	: clean
 	rm -f $(NAME) 
 
 clean:
-	make fclean -C headers/Libft clean
+	make fclean -C headers/libft/Libft clean
 	rm -f $(OBJS)
 
 re		: fclean all

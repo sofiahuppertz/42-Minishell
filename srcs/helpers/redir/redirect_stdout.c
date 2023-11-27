@@ -12,7 +12,7 @@ int	redirect_stdout(t_cmd_line **cmdl, t_token *token, short int flag)
         ft_putstr_fd(token->str, 2);
         ft_putendl_fd(": Permission denied", 2);
         g_sig.status = 1;
-        
+        g_sig.stop_exec = 1;
         return(1);
     }
 	return (0);

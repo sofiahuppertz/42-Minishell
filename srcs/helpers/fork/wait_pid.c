@@ -6,7 +6,7 @@ int	wait_pid(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
 	int				idx;
 
 	idx = 0;
-	if (num_cmds == 1 && is_builtin((*cmd_line)->argv[0]))
+	if ((num_cmds == 1 && is_builtin((*cmd_line)->argv[0])) || g_sig.stop_exec)
 	{
 		return (0);
 	}

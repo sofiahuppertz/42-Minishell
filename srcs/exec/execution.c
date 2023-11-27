@@ -19,6 +19,7 @@ int	execution(t_cmd_line **full_cmd)
        	wait_pid(full_cmd, pid, num_cmds);
     }
 	ft_memdel((void *)pid);
+	g_sig.stop_exec = 0;
 	return (0);
 }
 

@@ -1,5 +1,5 @@
 
-#include "../../../headers/minishell.h"
+#include "../../headers/minishell.h"
 
 int parsing(char **str, t_cmd_line **line)
 {
