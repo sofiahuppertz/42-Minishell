@@ -7,7 +7,7 @@ int	create_heredoc(t_cmd_line **simple_cmd, t_token **token)
     char	*name_file;
 
     name_file = ".heredoc";
-    fd = open(name_file, O_CREAT | O_EXCL | O_RDWR, 0644);
+    fd = open(name_file, O_CREAT | O_TRUNC | O_RDWR, 0644);
     if (fd == -1)
     {
         perror("Error creating heredoc");

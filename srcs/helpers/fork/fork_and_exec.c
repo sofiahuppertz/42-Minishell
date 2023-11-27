@@ -15,7 +15,10 @@ int	fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line, t_cmd_line **simpl
     	if ((*simple_cmd)->argv)
     	{
     	    if (is_builtin((*simple_cmd)->argv[0]))
-    	        g_sig.status = exec_builtin((const char **)(*simple_cmd)->argv, (*simple_cmd)->fd_out);
+			{
+				g_sig.status = exec_builtin((const char **)(*simple_cmd)->argv, (*simple_cmd)->fd_out);
+				exit(g_sig.status);
+			}    
     	    else
     	        exec_binary((*simple_cmd)->argv, cmd_line);
     	}

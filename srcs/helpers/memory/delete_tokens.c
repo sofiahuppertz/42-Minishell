@@ -7,7 +7,6 @@ void delete_tokens(t_token *head)
 
     while (head)
     {
-        ft_memdel(head->str);  
         temp = head;           
         head = head->next; 
         ft_memdel(temp);     

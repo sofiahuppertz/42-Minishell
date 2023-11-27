@@ -14,7 +14,7 @@ void	sig_int(int code)
 		g_sig.status = 1;
 	}
 	else
-	{
+	{	
 		ft_putstr_fd("\n", 2);
 		g_sig.status = 130;
 	}

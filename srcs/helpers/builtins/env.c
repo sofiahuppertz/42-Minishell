@@ -10,6 +10,6 @@ int env(t_env *env, int fd)
 		env = env->next;
     }
     if (env)
-		ft_putendl_fd(env->str, STDOUT);
+		ft_putendl_fd(env->str, fd);
 	return (SUCCESS);
 }

@@ -12,7 +12,7 @@ void    expansions(t_cmd_line **cmd_line)
         token = simple_cmd->first_token;
         while (token)
         {
-            if (token->type == ARG)
+            if (token->type == ARG || token->type == LIMIT)
                 realloc_str_and_expansions(&(token->str), *get_adress_envp());
             token = token->next;
         }
