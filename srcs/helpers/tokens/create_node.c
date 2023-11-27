@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_node.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 18:55:28 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 18:55:32 by shuppert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-t_token *create_node(int str_len)
+t_token	*create_node(int str_len)
 {
-	t_token *new_token;
+	t_token	*new_token;
 
 	new_token = ft_calloc(sizeof(t_token), 1);
 	if (!new_token)

@@ -1,8 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_file_types.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 18:54:21 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 18:54:26 by shuppert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-
-static t_type  file_type(t_type delim, int *file)
+static t_type	file_type(t_type delim, int *file)
 {
 	*file = 0;
 	if (delim == INPUT)
@@ -18,9 +28,9 @@ static t_type  file_type(t_type delim, int *file)
 
 int	set_file_types(t_cmd_line **full_cmd)
 {
-    int				prev_delim;
+	int			prev_delim;
 	t_cmd_line	*simple_cmd;
-	t_token			*token;
+	t_token		*token;
 	t_type		delim;
 
 	simple_cmd = *full_cmd;
@@ -30,12 +40,12 @@ int	set_file_types(t_cmd_line **full_cmd)
 		token = simple_cmd->first_token;
 		while (token)
 		{
-			if (token->type == INPUT || token->type == TRUNC 
+			if (token->type == INPUT || token->type == TRUNC
 				|| token->type == APPEND || token->type == HEREDOC)
-            {
-                prev_delim = 1;
-                delim = token->type;
-            }
+			{
+				prev_delim = 1;
+				delim = token->type;
+			}
 			else if (prev_delim == 1 && token->str && (token->str[0] != '\0'))
 				token->type = file_type(delim, &prev_delim);
 			token = token->next;

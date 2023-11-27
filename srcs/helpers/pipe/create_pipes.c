@@ -1,21 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_pipes.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 18:52:53 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 18:52:57 by shuppert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
 int	create_pipes(t_cmd_line **cmd_line)
 {
 	t_cmd_line	*simple_cmd;
-	int				**fds;
-	int				file_idx;
-    int            num_cmds;
-
+	int			**fds;
+	int			file_idx;
+	int			num_cmds;
 
 	simple_cmd = *cmd_line;
-    num_cmds = cmd_count(simple_cmd);
+	num_cmds = cmd_count(simple_cmd);
 	fds = ft_calloc(sizeof(int *), num_cmds + 1);
 	if (fds == NULL)
-        exit_failure(); //replace for a function that frees everything	
+		exit_failure(); //replace for a function that frees everything
 	fds[num_cmds] = NULL;
-    file_idx = 0;
+	file_idx = 0;
 	while (simple_cmd)
 	{
 		make_pipe(fds, file_idx, simple_cmd);

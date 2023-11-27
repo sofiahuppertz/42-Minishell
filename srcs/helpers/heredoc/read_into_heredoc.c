@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_into_heredoc.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 18:52:23 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 18:52:27 by shuppert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
 int	read_into_heredoc(int fd, char *limitor)
 {
 	char	*here_line;
-    t_env   *envp;
+	t_env	*envp;
 
-    envp = *get_adress_envp();
+	envp = *get_adress_envp();
 	while (1)
 	{
 		here_line = readline("> ");
 		if (here_line == NULL)
-			return 0;
+			return (0);
 		if (ft_strcmp(limitor, here_line) == 0)
 			break ;
 		if (here_line[0] != '\0')

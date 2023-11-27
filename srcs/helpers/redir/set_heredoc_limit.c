@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_heredoc_limit.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 18:54:28 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 18:54:33 by shuppert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
 int	set_heredoc_limit(t_cmd_line **full_cmd)
 {
 	t_cmd_line	*cur_b;
-	t_token			*cur_t;
-    int limit;
+	t_token		*cur_t;
+	int			limit;
 
 	cur_b = *full_cmd;
 	while (cur_b)

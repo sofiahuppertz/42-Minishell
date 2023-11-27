@@ -1,20 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_spaces_to_delims.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 18:54:55 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 18:54:58 by shuppert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int add_spaces_to_delims(char **str) 
+int	add_spaces_to_delims(char **str)
 {
-    int new_len; 
-    char *new_str; 
+	int		new_len;
+	char	*new_str;
 
 	new_len = strlen_with_spaces(*str);
 	new_str = ft_calloc(sizeof(char), new_len);
-    if (!new_str)
+	if (!new_str)
 	{
 		free(*str);
-		return 0;
+		return (0);
 	}
-    strcpy_adding_spaces(&new_str, *str);
+	strcpy_adding_spaces(&new_str, *str);
 	ft_memdel((void *)*str);
 	*str = new_str;
-    return 1;
+	return (1);
 }

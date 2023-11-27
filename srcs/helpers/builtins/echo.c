@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   echo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 18:47:20 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 18:47:21 by shuppert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static	size_t		count_args(const char **args)
+static size_t	count_args(const char **args)
 {
-	int		size;
+	int	size;
 
 	size = 0;
 	while (args[size])
@@ -11,9 +22,9 @@ static	size_t		count_args(const char **args)
 	return (size);
 }
 
-int				echo(const char **args, int fd)
+int	echo(const char **args, int fd)
 {
-	size_t		i;
+	size_t	i;
 	int		n_option;
 
 	i = 1;

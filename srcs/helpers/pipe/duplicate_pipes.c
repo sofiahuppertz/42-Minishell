@@ -1,16 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   duplicate_pipes.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 18:53:00 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 18:53:04 by shuppert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static int print_pipe_error(void)
+static int	print_pipe_error(void)
 {
 	ft_putstr_fd("minishell: syntax error near: unexpected token `|'\n", 2);
 	g_sig.status = 258;
 	return (1);
 }
 
-int duplicate_pipes(char *str)
+int	duplicate_pipes(char *str)
 {
-
 	int	idx;
 	int	pipe;
 
@@ -29,8 +39,8 @@ int duplicate_pipes(char *str)
 		idx++;
 	}
 	while (idx >= 0 && ft_iswhitespace(str[idx]))
-        idx--;
-    if (str[idx] == '|')
+		idx--;
+	if (str[idx] == '|')
 		return (print_pipe_error());
 	return (0);
 }

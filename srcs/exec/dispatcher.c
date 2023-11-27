@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dispatcher.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 18:46:41 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 19:00:14 by shuppert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
 int	dispatcher(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
 {
-	int				idx;
+	int			idx;
 	t_cmd_line	*simple_cmd;
 
 	idx = 0;
@@ -17,7 +28,8 @@ int	dispatcher(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
 	{
 		simple_cmd = *cmd_line;
 		if (num_cmds == 1 && is_builtin(simple_cmd->argv[0]))
-			g_sig.status = exec_builtin((const char **)(*cmd_line)->argv, (*cmd_line)->fd_out);
+			g_sig.status = exec_builtin((const char **)(*cmd_line)->argv,
+										(*cmd_line)->fd_out);
 		else
 		{
 			while (idx < num_cmds)

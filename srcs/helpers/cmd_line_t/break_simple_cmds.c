@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   break_simple_cmds.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 18:48:32 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 19:00:36 by shuppert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int    break_simple_cmds(char *line, t_cmd_line **simple_cmd_list)
+int	break_simple_cmds(char *line, t_cmd_line **simple_cmd_list)
 {
-    int	idx;
+	int	idx;
 	int	cmd_start;
 
 	idx = 0;

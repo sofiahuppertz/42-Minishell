@@ -1,31 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   strlen_expanded_var.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 18:51:12 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 18:51:14 by shuppert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int strlen_expanded_var(const char *arg, int idx, t_env *env)
+int	strlen_expanded_var(const char *arg, int idx, t_env *env)
 {
-    char    varname[1025];
-    char    *buffer;
-    int     len;
+	char	varname[1025];
+	char	*buffer;
+	int		len;
 
-    len = 0;
-    if (arg[idx] == '?')
-    {
-        buffer = ft_itoa(g_sig.status);
-        len = ft_strlen(buffer);   
-    }
-    else if (ft_isdigit(arg[idx]))
-        return 0;
-    else
-    {
-        while(len < 1024 && arg[idx] && (ft_isalnum(arg[idx]) || arg[idx] == '_'))
-            varname[len++] = arg[idx++];
-        varname[len] = '\0';
-        buffer = envp_get_value((const char *)varname, env);
-        if (!buffer)
-            len = 0;
-        else
-            len = ft_strlen(buffer);
-    }
-    ft_memdel(buffer);
-    return (len);
+	len = 0;
+	if (arg[idx] == '?')
+	{
+		buffer = ft_itoa(g_sig.status);
+		len = ft_strlen(buffer);
+	}
+	else if (ft_isdigit(arg[idx]))
+		return (0);
+	else
+	{
+		while (len < 1024 && arg[idx] && (ft_isalnum(arg[idx])
+				|| arg[idx] == '_'))
+			varname[len++] = arg[idx++];
+		varname[len] = '\0';
+		buffer = envp_get_value((const char *)varname, env);
+		if (!buffer)
+			len = 0;
+		else
+			len = ft_strlen(buffer);
+	}
+	ft_memdel(buffer);
+	return (len);
 }
