@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   access_failure.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:46:57 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:47:00 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:24:07 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ int	access_failure(char *command)
 	else if (errno == ENOTDIR)
 		ft_putendl_fd(": No such file or directory", STDERR);
 	if (errno == ENOENT || errno == ENOTDIR)
-		return (127);
+		exit (127);
 	else if (errno == EACCES || errno == EISDIR)
-		return (126);
+		exit (126);
 	else
-		return (1);
+		exit (1);
+	exit (0);
 }

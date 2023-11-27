@@ -69,6 +69,7 @@ HELPERS = binaries/access_failure.c \
 	signals/init_signals.c \
 	signals/signal_handlers.c \
 	spaces/add_spaces_to_delims.c \
+	spaces/is_empty_line.c \
 	spaces/strcpy_adding_spaces.c \
 	spaces/strlen_with_spaces.c \
 	tokens/count_args_in_cmd.c \

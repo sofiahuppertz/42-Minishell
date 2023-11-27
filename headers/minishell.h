@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 19:03:31 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:13:40 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ int						init_signals(void);
 int						invalid_redirections(char *str);
 int						is_builtin(char *command);
 int						is_delim(char *line, int i);
+int						is_empty_line(char *str);
 int						make_pipe(int **fds, int idx, t_cmd_line *simple_cmd);
 int						parsing(char **str, t_cmd_line **line);
 int						pwd(int fd);

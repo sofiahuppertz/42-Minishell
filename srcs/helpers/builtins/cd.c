@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:15 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 19:03:03 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:40:27 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,7 @@ int	cd(const char **args, t_env **env)
 		if (exit_status != 0)
 		{
 			print_error(args);
-			if (exit_status < 0)
-				exit_status *= -1;
+			exit_status = 1;
 		}
 	}
 	return (exit_status);

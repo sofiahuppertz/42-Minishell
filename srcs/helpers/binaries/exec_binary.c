@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_binary.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:03 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:47:05 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:24:53 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ int	exec_binary(char **args, t_cmd_line **cmd_line)
 		if (path != NULL)
 		{
 			ft_execve(path, args, dirs, cmd_line);
-			ft_memdel(path);
 		}
 		else
-			g_sig.status = access_failure(args[0]);
+		{
+			ft_memdel_2d((void **)dirs);
+			access_failure(args[0]);
+		}
 	}
-	ft_memdel_2d((void **)dirs);
 	return (0);
 }
