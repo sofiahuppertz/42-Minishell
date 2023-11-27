@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:53:00 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 21:44:57 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/27 22:26:24 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int	print_pipe_error(void)
 {
 	ft_putstr_fd("minishell: syntax error near: unexpected token `|'\n", 2);
-	g_sig.status = 258;
 	return (1);
 }
 

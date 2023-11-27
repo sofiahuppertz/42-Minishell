@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:56:30 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 21:45:34 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/27 22:30:13 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ int	main(int argc, char **argv, char **envp)
 			break ;
 		g_sig.pid = 1;
 		if (str != NULL)
-			parsing(&str, &full_cmd);
-		if (g_sig.status != 258 && full_cmd != NULL)
-			execution(&full_cmd);
+			if (parsing(&str, &full_cmd) && full_cmd != NULL)
+				execution(&full_cmd);
 		ft_memdel((void *)str);
 		delete_cmd_line(&full_cmd);
 	}
