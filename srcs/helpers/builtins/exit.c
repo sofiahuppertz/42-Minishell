@@ -1,7 +1,7 @@
 
 #include "../../../headers/minishell.h"
 
-int	exit_cmd(char **cmd)
+int	exit_cmd(const char **cmd)
 {
     g_sig.exit_shell = 1;
 	ft_putendl_fd("exit 👋", 2);
@@ -16,7 +16,7 @@ int	exit_cmd(char **cmd)
         if (!(ft_is_all(cmd[1], &ft_isdigit)))
         {
             ft_putstr_fd("minishell: exit: ", 2);
-            ft_putstr_fd(cmd[1], 2);
+            ft_putstr_fd((char *)cmd[1], 2);
             ft_putendl_fd(": numeric argument required", 2);
             return (255);
         }

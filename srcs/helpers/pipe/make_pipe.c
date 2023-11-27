@@ -9,16 +9,16 @@ int	make_pipe(int **fds, int idx, t_cmd_line *simple_cmd)
 	if (pipe(fds[idx]) == -1)
 		return (1);
 	if (idx == 0)
-		cmd->fd_in = 0;
+		simple_cmd->fd_in = 0;
 	else
-		cmd->fd_in = fds[idx - 1][0];
-	if (cmd->next == NULL)
+		simple_cmd->fd_in = fds[idx - 1][0];
+	if (simple_cmd->next == NULL)
 	{
 		close(fds[idx][0]);
 		close(fds[idx][1]);
-		cmd->fd_out = 1;
+		simple_cmd->fd_out = 1;
 	}
 	else
-		cmd->fd_out = fds[idx][1];
+		simple_cmd->fd_out = fds[idx][1];
 	return (0);
 }

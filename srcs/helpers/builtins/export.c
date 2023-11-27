@@ -6,17 +6,17 @@ static int	print_error(int status, const char *arg)
 	int		i;
 
 	if (status == -1)
-		ft_putstr_fd("export: not valid in this context: ", STDERR);
+		ft_putstr_fd("export: not valid in this context: ", 2);
 	else if (status == 0 || status == -3)
-		ft_putstr_fd("export: not a valid identifier: ", STDERR);
+		ft_putstr_fd("export: not a valid identifier: ", 2);
 	i = 0;
 	while (arg[i] && (arg[i] != '=' || status == -3))
 	{
-		write(STDERR, &arg[i], 1);
+		write(2, &arg[i], 1);
 		i++;
 	}
-	write(STDERR, "\n", 1);
-	return (ERROR);
+	write(2, "\n", 1);
+	return (1);
 }
 
 static int  env_var_exists(const char *varname, t_env *env)
@@ -26,7 +26,7 @@ static int  env_var_exists(const char *varname, t_env *env)
     len = ft_strlen(varname);
     while (env)
     {
-        if (ft_strncmp(env->value, varname, len) == 0)
+        if (ft_strncmp(env->str, varname, len) == 0)
             return (1);
         env = env->next;
     }
@@ -34,7 +34,7 @@ static int  env_var_exists(const char *varname, t_env *env)
 }
 
 
-static char  *get_value(char *arg, int status)
+static char  *get_value(const char *arg, int status)
 {
     char    *value;
     int     i;
@@ -55,7 +55,7 @@ static char  *get_value(char *arg, int status)
     return (value);
 }
 
-static void print_env(t_env *env)
+static void print_env(t_env *env, int fd)
 {
     char **sorted_env;
     int var;
@@ -64,14 +64,14 @@ static void print_env(t_env *env)
     sorted_env = envp_sort(env);;
     while (sorted_env[var])
     {
-        ft_putstr_fd("declare -x ", STDOUT);
-        ft_putendl_fd(sorted_env[var], STDOUT);
+        ft_putstr_fd("declare -x ", fd);
+        ft_putendl_fd(sorted_env[var], fd);
         var++;
     }
     ft_memdel((void *)sorted_env);
 }
 
-int			export(char **args, t_env **env)
+int			export(const char **args, t_env **env, int fd)
 {
 	int		status;
     char    *name;
@@ -81,7 +81,7 @@ int			export(char **args, t_env **env)
     name = NULL;
     value = NULL;
 	if (!args[1])
-		print_env(*env);
+		print_env(*env, fd);
 	else
 	{
 		status = envp_is_valid_varname(args[1]); 

@@ -1,7 +1,7 @@
 
 #include "../../../headers/minishell.h"
 
-int	create_heredoc_fd(t_cmd_line **simple_cmd, t_token **token)
+int	create_heredoc(t_cmd_line **simple_cmd, t_token **token)
 {
     int		fd;
     char	*name_file;
@@ -13,7 +13,7 @@ int	create_heredoc_fd(t_cmd_line **simple_cmd, t_token **token)
         perror("Error creating heredoc");
         return (-1);
     }
-    read_into_heredoc(fd, (*token)->str, (*token)->expanded);
+    read_into_heredoc(fd, (*token)->str);
     close(fd); 
     fd = open(name_file, O_RDONLY);
     (*simple_cmd)->fd_in = fd;

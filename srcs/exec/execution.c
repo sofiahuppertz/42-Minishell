@@ -15,9 +15,11 @@ int	execution(t_cmd_line **full_cmd)
 		exit_failure();
     if (!g_sig.stop_exec)
     {
-        dispatcher(full_cmd, pid, num_cmds);
-       //wait_pid(full_cmd, pid);
+    	dispatcher(full_cmd, pid, num_cmds);
+       	wait_pid(full_cmd, pid, num_cmds);
     }
 	ft_memdel((void *)pid);
 	return (0);
 }
+
+//signals!

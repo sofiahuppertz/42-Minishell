@@ -1,9 +1,8 @@
 
 #include "../../../headers/minishell.h"
 
-int	redirect_file_out(t_cmd_line **cmdl, t_token *token, short int flag)
+int	redirect_stdout(t_cmd_line **cmdl, t_token *token, short int flag)
 {
-
 	if ((*cmdl)->fd_out != 1)
 		close((*cmdl)->fd_out);
 	(*cmdl)->fd_out = open(token->str, O_CREAT | O_RDWR | flag, 0644);

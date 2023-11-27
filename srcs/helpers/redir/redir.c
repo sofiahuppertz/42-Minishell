@@ -1,7 +1,7 @@
 
 #include "../../../headers/minishell.h"
 
-int	open_fd(t_cmd_line **simple_cmd)
+int	redir(t_cmd_line **simple_cmd)
 {
 	t_token	*token;
 

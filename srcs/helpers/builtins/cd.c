@@ -1,7 +1,7 @@
 
 #include "../../../headers/minishell.h"
 
-static void		print_error(char **args)
+static void		print_error(const char **args)
 {
 	ft_putstr_fd("cd: ", 2);
 	if (args[2])
@@ -11,7 +11,7 @@ static void		print_error(char **args)
 		ft_putstr_fd(strerror(errno), 2);
 		ft_putstr_fd(": ", 2);
 	}
-	ft_putendl_fd(args[1], 2);
+	ft_putendl_fd((char *)args[1], 2);
 }
 
 static int update_old_dir(t_env **env)
@@ -74,7 +74,7 @@ static int  cd_prev_dir(t_env **env)
 }
 
 
-int				cd(char **args, t_env **env)
+int				cd(const char **args, t_env **env)
 {
 	int		exit_status;
 

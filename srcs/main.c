@@ -18,10 +18,11 @@ int	main(int argc, char **argv, char **envp)
 			parsing(&str, &full_cmd);
 		if (g_sig.status != 258 && full_cmd != NULL)
 			execution(&full_cmd);
-		ft_memdel((void*)str); //Not sure about this but I think yeah
+		ft_memdel((void*)str);
 		str = NULL;
 		delete_cmd_line(&full_cmd);
 	}
     (void)argc;
     (void)argv;
+	return (g_sig.status);
 }

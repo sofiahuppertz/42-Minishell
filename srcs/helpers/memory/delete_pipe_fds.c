@@ -1,7 +1,7 @@
 
 #include "../../../headers/minishell.h"
 
-void	delete_fds(int **fds)
+void	delete_pipe_fds(int **fds)
 {
     int	i;
 
