@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_modify_var.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:49:58 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:50:03 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 21:06:56 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,17 @@ int	envp_modify_var(const char *new_value, const char *var_name, t_env **env)
 {
 	t_env	*current;
 	size_t	var_name_len;
+	int 	alloc_d;
 
 	current = *env;
+	alloc_d = 0;
+	if (!var_name)
+		return (-42);
+	if (!new_value)
+	{
+		new_value = ft_strdup("");
+		alloc_d = 1;
+	}
 	var_name_len = ft_strlen(var_name);
 	while (current)
 	{
@@ -31,5 +40,7 @@ int	envp_modify_var(const char *new_value, const char *var_name, t_env **env)
 		}
 		current = current->next;
 	}
+	if (alloc_d)
+		ft_memdel((void *)new_value);
 	return (-42);
 }

@@ -32,9 +32,11 @@ HELPERS = binaries/access_failure.c \
 	envp/envp_get_var.c \
 	envp/envp_is_valid_varname.c \
 	envp/envp_is_value_assigned.c \
+	envp/envp_is_value_in_env.c \
 	envp/envp_modify_var.c \
 	envp/envp_remove_var.c \
 	envp/envp_sort.c \
+	envp/envp_update_pwd.c \
 	envp/get_adress_envp.c \
 	envp/init_envp.c \
 	envp/init_shell_level.c \

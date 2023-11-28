@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_binary.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:03 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:41:06 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 20:29:49 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ static void	handle_command_not_found(char **dirs, char **args,
 {
 	char	*command;
 
-	command = ft_strdup(args[0]);
+	command = NULL;
+	if (args[0])
+		command = ft_strdup(args[0]);
 	delete_cmd_line(*cmd_line);
 	ft_memdel_2d((void **)dirs);
 	access_failure(command);
@@ -55,7 +57,9 @@ int	exec_binary(char **args, t_cmd_line **cmd_line)
 
 	delete_envp();
 	dirs = ft_split(getenv("PATH"), ':');
-	if (access(args[0], X_OK) == 0)
+	if (!args[0])
+		handle_command_not_found(dirs, args, &cmd_line);
+	else if (access(args[0], X_OK) == 0)
 	{
 		ft_execve(args[0], args, dirs);
 	}

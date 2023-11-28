@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 14:55:13 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 21:24:49 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int						envp_add_var(const char *new_variable, t_env **env);
 int						envp_count(t_env *env);
 int						envp_is_valid_varname(const char *env);
 int						envp_is_value_assigned(const char *str);
+int						envp_is_value_in_env(const char *value);
 int	envp_modify_var(const char *new_value,
 					const char *var_name,
 					t_env **env);
@@ -182,6 +183,7 @@ void delete_cmd_line_except_argv(t_cmd_line **cmd_line);
 void					delete_envp(void);
 void					delete_pipe_fds(int **fds);
 void					delete_tokens(t_token *head);
+void					envp_update_pwd(char *curr_dir);
 void					expansions(t_cmd_line **cmd_line);
 void					init_shell_level(void);
 void					init_type(t_token *new);
