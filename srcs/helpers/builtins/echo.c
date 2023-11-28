@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:20 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:45:58 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 21:46:14 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,22 @@ static size_t	count_args(const char **args)
 	return (size);
 }
 
-static int	handle_n_option(const char **args, size_t *i)
+static  int  handle_n_option(const char **args, size_t *idx)
 {
 	int	n_option;
+	int n_idx;
 
 	n_option = 0;
-	while (args[*i] && ft_strcmp(args[*i], "-n") == 0)
+	while (args[*idx] && args[*idx][0] == '-')
 	{
-		n_option = 1;
-		(*i)++;
+		n_idx = 1;
+		while (args[*idx][n_idx] == 'n')
+			n_idx++;
+		if (args[*idx][n_idx] == '\0')
+			n_option = 1;
+		else
+			break ;
+		(*idx)++;
 	}
 	return (n_option);
 }
