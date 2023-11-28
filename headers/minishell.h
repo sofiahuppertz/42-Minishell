@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 21:24:49 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 22:24:27 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int						echo(const char **args, int fd);
 int						env(t_env *env, int fd);
 int						envp_add_var(const char *new_variable, t_env **env);
 int						envp_count(t_env *env);
-int						envp_is_valid_varname(const char *env);
+int						envp_is_valid_varname(const char *varname);
 int						envp_is_value_assigned(const char *str);
 int						envp_is_value_in_env(const char *value);
 int	envp_modify_var(const char *new_value,

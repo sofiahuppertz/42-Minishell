@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   envp_is_valid_varname.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:49:41 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:49:43 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 22:13:36 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int	envp_is_valid_varname(const char *env)
+int	envp_is_valid_varname(const char *varname)
 {
 	int	i;
 
-	if (ft_isdigit(env[0]) == 1)
+	if (ft_isdigit(varname[0]) == 1)
 		return (0);
-	else if (env[0] == '=')
+	else if (varname[0] == '=')
 		return (-3);
 	i = 0;
-	while (env[i] && env[i] != '=')
+	while (varname[i] && varname[i] != '=')
 	{
-		if (ft_isalnum(env[i]) == 0)
+		if (ft_isalnum(varname[i]) == 0)
 			return (-1);
 		i += 1;
 	}
-	if (env[i] != '=')
+	if (varname[i] != '=')
 		return (2);
-	else if (env[i] == '=' && env[i + 1] == '\0')
+	else if (varname[i] == '=' && varname[i + 1] == '\0')
 		return (3);
 	return (1);
 }

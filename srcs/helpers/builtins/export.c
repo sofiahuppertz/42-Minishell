@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:52 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 16:13:20 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 22:22:28 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,6 @@ static int	print_error(int status, const char *arg)
 	}
 	write(2, "\n", 1);
 	return (1);
-}
-
-static int	env_var_exists(const char *varname, t_env *env)
-{
-	int	len;
-
-	if (!varname)
-		return (0);
-	len = ft_strlen(varname);
-	while (env)
-	{
-		if (ft_strncmp(env->str, varname, len) == 0)
-			return (1);
-		env = env->next;
-	}
-	return (0);
 }
 
 static char	*get_value(const char *arg, int status)
@@ -86,8 +70,12 @@ static void	print_env(t_env *env, int fd)
 int	export(const char **args, t_env **env, int fd)
 {
 	int		status;
+	int 	idx;
+	int		value_in_env;
 	char	*name;
 	char	*value;
+
+
 
 	status = 0;
 	name = NULL;
@@ -96,29 +84,39 @@ int	export(const char **args, t_env **env, int fd)
 		print_env(*env, fd);
 	else
 	{
-		status = envp_is_valid_varname(args[1]);
-		if (status <= 0)
-			return (print_error(status, (const char *)args[1]));
-		name = envp_get_var(args[1]); //extract name including "=".
-		if (name && env_var_exists((const char *)name, *env))
+		idx = 1;
+		while (args[idx])
 		{
-			value = get_value(args[1], status);
-			status = envp_modify_var((const char *)value, (const char *)name,
-					env);
-			ft_memdel(value);
-		}
-		else if (name)
-		{
-			if (status == 3)
+			status = envp_is_valid_varname(args[idx]);
+			if (status <= 0)
 			{
-				value = ft_strjoin(args[1], "\"\"");
-				status = envp_add_var((const char *)value, env);
+				status = print_error(status, (const char *)args[idx]);
+				idx += 1;
+				continue;
+			}
+			name = envp_get_var(args[idx]);
+			value_in_env = envp_is_value_in_env(name);
+			if (name && value_in_env)
+			{
+				value = get_value(args[idx], status);
+				status = envp_modify_var((const char *)value, (const char *)name,
+						env);
 				ft_memdel(value);
 			}
-			else
-				status = envp_add_var((const char *)args[1], env);
+			else if (name)
+			{
+				if (status == 3)
+				{
+					value = ft_strjoin(args[idx], "\"\"");
+					status = envp_add_var((const char *)value, env);
+					ft_memdel(value);
+				}
+				else
+					status = envp_add_var((const char *)args[idx], env);
+			}
+			ft_memdel(name);
+			idx += 1;
 		}
 	}
-	ft_memdel(name);
 	return (status);
 }
