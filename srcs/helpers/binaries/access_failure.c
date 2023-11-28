@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   access_failure.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:46:57 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 21:24:07 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 13:17:19 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int	access_failure(char *command)
+void	access_failure(char *command)
 {
+	int	status;
+
+	status = 0;
 	ft_putstr_fd("minishell: ", STDERR);
 	ft_putstr_fd(command, STDERR);
 	if (errno == ENOENT)
@@ -25,10 +28,11 @@ int	access_failure(char *command)
 	else if (errno == ENOTDIR)
 		ft_putendl_fd(": No such file or directory", STDERR);
 	if (errno == ENOENT || errno == ENOTDIR)
-		exit (127);
+		status = 127;
 	else if (errno == EACCES || errno == EISDIR)
-		exit (126);
+		status = 126;
 	else
-		exit (1);
-	exit (0);
+		status = 1;
+	free(command);
+	exit(status);
 }

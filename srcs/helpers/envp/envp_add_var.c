@@ -3,35 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   envp_add_var.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:49:08 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 20:50:48 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 13:40:25 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int envp_add_var(const char *new_variable, t_env **env)
+int	envp_add_var(const char *new_variable, t_env **env)
 {
-    t_env *new_node;
-    t_env *current;
+	t_env	*new_node;
+	t_env	*current;
 
-    if (!env || !(new_node = ft_calloc(sizeof(t_env), 1)))
-        return (-1);
-    
-    new_node->str = ft_strdup(new_variable);
-    if (!new_node->str)
-        return (ERROR);
-    new_node->next = NULL;
-    if (*env == NULL)
-        *env = new_node;
-    else
-    {
-        current = *env;
-        while (current->next)
-            current = current->next;
-        current->next = new_node;
-    }
-    return (SUCCESS);
+	if (!env || !(new_node = ft_calloc(sizeof(t_env), 1)))
+		return (-1);
+	new_node->str = ft_strdup(new_variable);
+	if (!new_node->str)
+		return (ERROR);
+	new_node->next = NULL;
+	if (*env == NULL)
+		*env = new_node;
+	else
+	{
+		current = *env;
+		while (current->next)
+			current = current->next;
+		current->next = new_node;
+	}
+	return (SUCCESS);
 }

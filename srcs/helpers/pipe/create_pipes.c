@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:53 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:52:57 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 13:41:25 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	create_pipes(t_cmd_line **cmd_line)
 	num_cmds = cmd_count(simple_cmd);
 	fds = ft_calloc(sizeof(int *), num_cmds + 1);
 	if (fds == NULL)
-		exit_failure(); //replace for a function that frees everything
+		exit_failure();
 	fds[num_cmds] = NULL;
 	file_idx = 0;
 	while (simple_cmd)

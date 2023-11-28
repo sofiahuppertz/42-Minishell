@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:08 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 12:48:46 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 13:07:20 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_execve(char *path, char **args, char **dirs)
 		ft_memdel_2d((void **)dirs);
 		ft_memdel_2d((void **)args);
 		ft_memdel((void *)path);
-		delete_envp();
 		exit(ERROR);
 	}
 	return (ERROR);

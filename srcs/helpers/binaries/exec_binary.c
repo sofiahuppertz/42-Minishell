@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_binary.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:03 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 12:55:32 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 13:18:08 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ int	exec_binary(char **args, t_cmd_line **cmd_line)
 {
 	char *path;
 	char **dirs;
+	char *command;
 
+	delete_envp();
 	dirs = ft_split(getenv("PATH"), ':');
 	if (access(args[0], X_OK) == 0)
 	{
@@ -57,10 +59,10 @@ int	exec_binary(char **args, t_cmd_line **cmd_line)
 		}
 		else
 		{
+			command = ft_strdup(args[0]);
 			delete_cmd_line(cmd_line);
-			delete_envp();
 			ft_memdel_2d((void **)dirs);
-			access_failure(args[0]);
+			access_failure(command);
 		}
 	}
 	return (0);

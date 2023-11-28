@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:55:57 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 12:19:38 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 13:41:51 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static t_token *get_next_arg(char *str, int *index)
+static t_token	*get_next_arg(char *str, int *index)
 {
-	t_token *arg;
+	t_token	*arg;
 
 	*index = ft_add_while_true(*index, str, &ft_iswhitespace);
 	if (!str[*index])
-		return NULL;
+		return (NULL);
 	arg = get_next_token(str, index);
 	if (!arg)
 		exit_failure();
-	return arg;
+	return (arg);
 }
 
-static int str_to_tokens(t_cmd_line **simple_cmd, char *str)
+static int	str_to_tokens(t_cmd_line **simple_cmd, char *str)
 {
-	t_token *arg;
-	t_token *prev_arg;
-	int index;
+	t_token	*arg;
+	t_token	*prev_arg;
+	int		index;
 
 	if (!str || str[0] == '\0')
 	{

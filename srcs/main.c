@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:56:30 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 12:45:21 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 13:05:49 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv, char **envp)
 		delete_cmd_line(&full_cmd);
 	}
 	delete_envp();
-	clear_history();
+	rl_clear_history();
 	(void)argc;
 	(void)argv;
 	return (g_sig.status);
