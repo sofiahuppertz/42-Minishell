@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   realloc_str_and_expansions.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:50:54 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:43:18 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 22:54:03 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	realloc_str_and_expansions(char **arg, t_env *envp)
 		if ((*arg)[x.idx] == EXPANSION)
 		{
 			handle_expansion_in_realloc(&x, arg, envp);
+			continue;
 		}
 		x.value[x.new_idx++] = (*arg)[x.idx++];
 	}
