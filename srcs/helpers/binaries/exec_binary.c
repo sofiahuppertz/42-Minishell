@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_binary.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:03 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 13:18:08 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:31:21 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,20 @@ static char	*search_path_for_command(char **dirs, char *command)
 	return (NULL);
 }
 
-int	exec_binary(char **args, t_cmd_line **cmd_line)
+static void handle_command_not_found(char **dirs, char **args, t_cmd_line ***cmd_line)
+{
+	char *command;
+
+	command = ft_strdup(args[0]);
+	delete_cmd_line(*cmd_line);
+	ft_memdel_2d((void **)dirs);
+	access_failure(command);
+}
+
+int exec_binary(char **args, t_cmd_line **cmd_line)
 {
 	char *path;
 	char **dirs;
-	char *command;
 
 	delete_envp();
 	dirs = ft_split(getenv("PATH"), ':');
@@ -59,10 +68,7 @@ int	exec_binary(char **args, t_cmd_line **cmd_line)
 		}
 		else
 		{
-			command = ft_strdup(args[0]);
-			delete_cmd_line(cmd_line);
-			ft_memdel_2d((void **)dirs);
-			access_failure(command);
+			handle_command_not_found(dirs, args, &cmd_line);
 		}
 	}
 	return (0);

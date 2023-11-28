@@ -3,42 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   strlen_with_expansions.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:51:21 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:51:26 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:24:33 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int	strlen_with_expansions(const char *arg, t_env *env)
+static void handle_expansion(const char *arg, int *idx, int *len, t_env *env)
 {
-	int	len;
-	int	idx;
+	(*idx)++;
+	if ((!arg[*idx] || !ft_isalnum(arg[*idx])) && arg[*idx] != '?')
+		(*len)++;
+	else
+		*len += strlen_expanded_var(arg, *idx, env);
+	if (!ft_isdigit(arg[*idx]))
+	{
+		while (arg[*idx + 1] && (ft_isalnum(arg[*idx]) || arg[*idx] == '_'))
+			(*idx)++;
+	}
+	else
+		(*len)--;
+}
 
-	len = 0;
-	idx = 0;
+int strlen_with_expansions(const char *arg, t_env *env)
+{
+	int len = 0;
+	int idx = 0;
+
 	while (arg[idx])
 	{
-		while (arg[idx] == EXPANSION)
+		if (arg[idx] == EXPANSION)
 		{
-			idx++;
-			if ((!arg[idx] || !ft_isalnum(arg[idx])) && arg[idx] != '?')
-				len++;
-			else
-				len += strlen_expanded_var(arg, idx, env);
-			if (!ft_isdigit(arg[idx]))
-			{
-				while (arg[idx + 1] && (ft_isalnum(arg[idx])
-						|| arg[idx] == '_'))
-					idx++;
-			}
-			else
-				len -= 1;
+			handle_expansion(arg, &idx, &len, env);
 		}
 		len++;
 		idx++;
 	}
-	return (len);
+	return len;
 }

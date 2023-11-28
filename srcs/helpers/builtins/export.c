@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:52 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:58:13 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:17:26 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static int	env_var_exists(const char *varname, t_env *env)
 {
 	int	len;
 
+	if (!varname)
+		return (0);
 	len = ft_strlen(varname);
 	while (env)
 	{
@@ -99,14 +101,14 @@ int	export(const char **args, t_env **env, int fd)
 		if (status <= 0)
 			return (print_error(status, (const char *)args[1]));
 		name = envp_get_var(args[1]); //extract name including "=".
-		if (env_var_exists((const char *)name, *env))
+		if (name && env_var_exists((const char *)name, *env))
 		{
 			value = get_value(args[1], status);
 			status = envp_modify_var((const char *)value, (const char *)name,
 					env);
 			ft_memdel(value);
 		}
-		else
+		else if (name)
 		{
 			if (status == 3)
 			{

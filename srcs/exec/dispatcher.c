@@ -6,18 +6,28 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:46:41 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 14:54:12 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 15:31:52 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
-int	dispatcher(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
+static void handle_multiple_commands(int num_cmds, pid_t *pid, t_cmd_line ***cmd_line, t_cmd_line **simple_cmd)
 {
-	int			idx;
-	t_cmd_line	*simple_cmd;
+	int idx = 0;
 
-	idx = 0;
+	while (idx < num_cmds)
+	{
+		fork_and_exec(pid, idx, *cmd_line, simple_cmd);
+		*simple_cmd = (*simple_cmd)->next;
+		idx++;
+	}
+}
+
+int dispatcher(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
+{
+	t_cmd_line *simple_cmd;
+
 	simple_cmd = *cmd_line;
 	while (simple_cmd)
 	{
@@ -28,17 +38,9 @@ int	dispatcher(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
 	{
 		simple_cmd = *cmd_line;
 		if (num_cmds == 1 && is_builtin(simple_cmd->argv[0]))
-			g_sig.status = exec_builtin((const char **)(*cmd_line)->argv,
-										(*cmd_line)->fd_out, 0);
+			g_sig.status = exec_builtin((const char **)(*cmd_line)->argv, (*cmd_line)->fd_out, 0);
 		else
-		{
-			while (idx < num_cmds)
-			{
-				fork_and_exec(pid, idx, cmd_line, &simple_cmd);
-				simple_cmd = simple_cmd->next;
-				idx++;
-			}
-		}
+			handle_multiple_commands(num_cmds, pid, &cmd_line, &simple_cmd);
 	}
 	return (0);
 }
