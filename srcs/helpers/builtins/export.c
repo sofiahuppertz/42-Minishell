@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:52 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 23:41:06 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 00:47:02 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,11 @@ static int handle_add_new_vars(const char *arg, int status, t_env **env)
 	return status;
 }
 
-static int handle_arg(const char *arg, t_env **env)
+static int handle_arg(const char *arg, t_env **env, int status)
 {
-	int status;
 	int value_in_env;
 	char *name;
 	char *value;
-
-	status = envp_is_valid_varname(arg);
-	if (status <= 0)
-		return print_error(status, arg);
 
 	name = envp_get_var(arg);
 	value_in_env = envp_is_value_in_env(name);
@@ -125,11 +120,15 @@ int export(const char **args, t_env **env, int fd)
 	idx = 1;
 	while (args[idx])
 	{
-		status = handle_arg(args[idx], env);
+		status = envp_is_valid_varname(args[idx]);
 		if (status <= 0)
-			return status;
+		{
+			print_error(status, args[idx]);
+			idx += 1;
+			continue;
+		}
+		status = handle_arg(args[idx], env, status);
 		idx += 1;
 	}
-
 	return status;
 }
