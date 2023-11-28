@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 12:50:52 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 12:54:12 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ void					cmd_list_add_back(t_cmd_line **head, t_cmd_line *last);
 void					count_args_in_cmd(t_cmd_line *simple_cmd, int *len);
 void					cpy_args_in_cmd(t_cmd_line *simple_cmd);
 void					delete_cmd_line(t_cmd_line **cmd_line);
+void delete_cmd_line_except_argv(t_cmd_line **cmd_line);
 void					delete_envp(void);
 void					delete_pipe_fds(int **fds);
 void					delete_tokens(t_token *head);
