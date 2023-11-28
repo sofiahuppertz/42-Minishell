@@ -49,6 +49,7 @@ HELPERS = binaries/access_failure.c \
 	heredoc/create_heredoc.c \
 	heredoc/read_into_heredoc.c \
 	memory/delete_cmd_line.c \
+	memory/delete_cmd_line_except_argv.c \
 	memory/delete_envp.c \
 	memory/delete_pipe_fds.c \
 	memory/delete_tokens.c \

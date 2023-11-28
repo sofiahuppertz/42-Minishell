@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:03 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 12:53:46 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 12:55:32 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	exec_binary(char **args, t_cmd_line **cmd_line)
 	dirs = ft_split(getenv("PATH"), ':');
 	if (access(args[0], X_OK) == 0)
 	{
-		ft_execve(args[0], args, dirs, cmd_line);
+		ft_execve(args[0], args, dirs);
 	}
 	else
 	{
