@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   strlen_expanded_var.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:51:12 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:23:14 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 15:46:26 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static int extract_var_and_len(const char *arg, int *idx, t_env *env)
+static int	extract_var_and_len(const char *arg, int *idx, t_env *env)
 {
-	char varname[1025];
-	char *buffer;
-	int len = 0;
+	char	varname[1025];
+	char	*buffer;
+	int		len;
 
-	while (len < 1024 && arg[*idx] && (ft_isalnum(arg[*idx]) || arg[*idx] == '_'))
+	len = 0;
+	while (len < 1024 && arg[*idx] && (ft_isalnum(arg[*idx])
+			|| arg[*idx] == '_'))
 		varname[len++] = arg[(*idx)++];
 	varname[len] = '\0';
 	buffer = envp_get_value((const char *)varname, env);
@@ -27,14 +29,15 @@ static int extract_var_and_len(const char *arg, int *idx, t_env *env)
 	else
 		len = ft_strlen(buffer);
 	ft_memdel(buffer);
-	return len;
+	return (len);
 }
 
-int strlen_expanded_var(const char *arg, int idx, t_env *env)
+int	strlen_expanded_var(const char *arg, int idx, t_env *env)
 {
-	char *buffer;
-	int len = 0;
+	char	*buffer;
+	int		len;
 
+	len = 0;
 	buffer = NULL;
 	if (arg[idx] == '?')
 	{
@@ -43,12 +46,12 @@ int strlen_expanded_var(const char *arg, int idx, t_env *env)
 	}
 	else if (ft_isdigit(arg[idx]))
 	{
-		return 0;
+		return (0);
 	}
 	else
 	{
 		len = extract_var_and_len(arg, &idx, env);
 	}
 	ft_memdel(buffer);
-	return len;
+	return (len);
 }

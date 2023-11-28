@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:55:57 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 13:41:51 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:47:46 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ static int	str_to_tokens(t_cmd_line **simple_cmd, char *str)
 	arg = get_next_arg(str, &index);
 	(*simple_cmd)->first_token = arg;
 	prev_arg = arg;
-	while ((arg = get_next_arg(str, &index)) != NULL)
+	arg = get_next_arg(str, &index);
+	while (arg != NULL)
 	{
 		prev_arg->next = arg;
 		prev_arg = arg;
+		arg = get_next_arg(str, &index);
 	}
 	if (prev_arg)
 		prev_arg->next = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:50:15 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:27:52 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 16:12:56 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ static void	swap(char **a, char **b)
 	*b = temp;
 }
 
-static void bubble_sort_envp(char **sorted_envp, int count)
+static void	bubble_sort_envp(char **sorted_envp, int count)
 {
-	int i = 0;
-	int j;
+	int	i;
+	int	j;
 
+	i = 0;
 	while (i < count - 1)
 	{
 		j = 0;
@@ -39,11 +40,11 @@ static void bubble_sort_envp(char **sorted_envp, int count)
 	}
 }
 
-char **envp_sort(t_env *env)
+char	**envp_sort(t_env *env)
 {
-	int count;
-	char **sorted_envp;
-	int i;
+	int		count;
+	char	**sorted_envp;
+	int		i;
 
 	count = envp_count(env) + 1;
 	sorted_envp = ft_calloc(sizeof(char *), count);
@@ -52,7 +53,7 @@ char **envp_sort(t_env *env)
 	i = 0;
 	while (env && i < count)
 	{
-		sorted_envp[i] = env->str;
+		sorted_envp[i] = ft_strdup(env->str);
 		env = env->next;
 		i += 1;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:52 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:17:26 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 16:13:20 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,13 @@ static void	print_env(t_env *env, int fd)
 
 	var = 0;
 	sorted_env = envp_sort(env);
-	;
 	while (sorted_env[var])
 	{
 		ft_putstr_fd("declare -x ", fd);
 		ft_putendl_fd(sorted_env[var], fd);
 		var++;
 	}
-	ft_memdel((void *)sorted_env);
+	ft_memdel_2d((void **)sorted_env);
 }
 
 int	export(const char **args, t_env **env, int fd)

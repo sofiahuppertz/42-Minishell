@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_shell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/28 15:51:42 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/28 15:51:44 by shuppert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-void run_shell(void)
+void	run_shell(void)
 {
-	char *str;
-	t_cmd_line *full_cmd;
+	char		*str;
+	t_cmd_line	*full_cmd;
 
 	full_cmd = NULL;
 	str = NULL;
@@ -17,7 +28,7 @@ void run_shell(void)
 		if (g_sig.exit_shell == 1)
 		{
 			ft_memdel((void *)str);
-			break;
+			break ;
 		}
 		g_sig.pid = 1;
 		if (str != NULL)

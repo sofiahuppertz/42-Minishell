@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   strlen_with_expansions.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:51:21 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:24:33 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 15:46:49 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static void handle_expansion(const char *arg, int *idx, int *len, t_env *env)
+static void	handle_expansion(const char *arg, int *idx, int *len, t_env *env)
 {
 	(*idx)++;
 	if ((!arg[*idx] || !ft_isalnum(arg[*idx])) && arg[*idx] != '?')
@@ -28,11 +28,13 @@ static void handle_expansion(const char *arg, int *idx, int *len, t_env *env)
 		(*len)--;
 }
 
-int strlen_with_expansions(const char *arg, t_env *env)
+int	strlen_with_expansions(const char *arg, t_env *env)
 {
-	int len = 0;
-	int idx = 0;
+	int	len;
+	int	idx;
 
+	len = 0;
+	idx = 0;
 	while (arg[idx])
 	{
 		if (arg[idx] == EXPANSION)
@@ -42,5 +44,5 @@ int strlen_with_expansions(const char *arg, t_env *env)
 		len++;
 		idx++;
 	}
-	return len;
+	return (len);
 }

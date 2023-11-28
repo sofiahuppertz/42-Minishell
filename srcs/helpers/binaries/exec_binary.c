@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_binary.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:03 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:31:21 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 15:41:06 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ static char	*search_path_for_command(char **dirs, char *command)
 	return (NULL);
 }
 
-static void handle_command_not_found(char **dirs, char **args, t_cmd_line ***cmd_line)
+static void	handle_command_not_found(char **dirs, char **args,
+		t_cmd_line ***cmd_line)
 {
-	char *command;
+	char	*command;
 
 	command = ft_strdup(args[0]);
 	delete_cmd_line(*cmd_line);
@@ -47,10 +48,10 @@ static void handle_command_not_found(char **dirs, char **args, t_cmd_line ***cmd
 	access_failure(command);
 }
 
-int exec_binary(char **args, t_cmd_line **cmd_line)
+int	exec_binary(char **args, t_cmd_line **cmd_line)
 {
-	char *path;
-	char **dirs;
+	char	*path;
+	char	**dirs;
 
 	delete_envp();
 	dirs = ft_split(getenv("PATH"), ':');

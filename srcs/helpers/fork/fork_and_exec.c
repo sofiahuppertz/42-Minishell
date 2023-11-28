@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork_and_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:06 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 14:54:52 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 16:34:09 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line,
 	if (pid[idx] == 0)
 	{
 		clear_history();
+		ft_memdel((void *)pid);
 		dup2((*simple_cmd)->fd_in, STDIN_FILENO);
 		dup2((*simple_cmd)->fd_out, STDOUT_FILENO);
 		close_fds(cmd_line);
@@ -29,10 +30,10 @@ int	fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line,
 			if (is_builtin((*simple_cmd)->argv[0]))
 			{
 				g_sig.status = exec_builtin((const char **)(*simple_cmd)->argv,
-											(*simple_cmd)->fd_out, 1);
+											(*simple_cmd)->fd_out,
+											1);
 				delete_cmd_line(cmd_line);
 				delete_envp();
-				clear_history();
 				exit(g_sig.status);
 			}
 			else

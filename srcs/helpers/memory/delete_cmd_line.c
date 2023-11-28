@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:40:48 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 13:40:49 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:03:46 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	delete_cmd_line(t_cmd_line **cmd_line)
 		while (*cmd_line)
 		{
 			temp = (*cmd_line)->next;
+			close_fds(cmd_line);
 			if ((*cmd_line)->string)
 				ft_memdel((void *)(*cmd_line)->string);
 			if ((*cmd_line)->argv)

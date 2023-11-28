@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   dispatcher.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:46:41 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:31:52 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 15:40:44 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
-static void handle_multiple_commands(int num_cmds, pid_t *pid, t_cmd_line ***cmd_line, t_cmd_line **simple_cmd)
+static void	handle_multiple_commands(int num_cmds, pid_t *pid,
+		t_cmd_line ***cmd_line, t_cmd_line **simple_cmd)
 {
-	int idx = 0;
+	int	idx;
 
+	idx = 0;
 	while (idx < num_cmds)
 	{
 		fork_and_exec(pid, idx, *cmd_line, simple_cmd);
@@ -24,9 +26,9 @@ static void handle_multiple_commands(int num_cmds, pid_t *pid, t_cmd_line ***cmd
 	}
 }
 
-int dispatcher(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
+int	dispatcher(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
 {
-	t_cmd_line *simple_cmd;
+	t_cmd_line	*simple_cmd;
 
 	simple_cmd = *cmd_line;
 	while (simple_cmd)
@@ -38,7 +40,9 @@ int dispatcher(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
 	{
 		simple_cmd = *cmd_line;
 		if (num_cmds == 1 && is_builtin(simple_cmd->argv[0]))
-			g_sig.status = exec_builtin((const char **)(*cmd_line)->argv, (*cmd_line)->fd_out, 0);
+			g_sig.status = exec_builtin((const char **)(*cmd_line)->argv,
+										(*cmd_line)->fd_out,
+										0);
 		else
 			handle_multiple_commands(num_cmds, pid, &cmd_line, &simple_cmd);
 	}
