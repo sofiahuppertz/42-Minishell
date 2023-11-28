@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:54:47 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:44:01 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:09:01 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sig_int(int code)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		g_sig.status = 1;
+		g_sig.status = 130;
 	}
 	else
 	{
