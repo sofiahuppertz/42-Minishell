@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 12:54:12 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 14:55:13 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_sig
 	pid_t				pid;
 }						t_sig;
 
-int						access_failure(char *command);
+
 int						add_spaces_to_delims(char **str);
 int	break_simple_cmds(char *line,
 						t_cmd_line **simple_cmd_list);
@@ -125,7 +125,7 @@ int	envp_modify_var(const char *new_value,
 					t_env **env);
 int						envp_remove_var(const char *var_name, t_env **env);
 int						execution(t_cmd_line **full_cmd);
-int						exec_builtin(const char **cmd_lst, int fd);
+int						exec_builtin(const char **cmd_lst, int fd, int child);
 int						exec_binary(char **args, t_cmd_line **cmd_line);
 int						exit_cmd(const char **cmd);
 int						export(const char **args, t_env **env, int fd);
@@ -170,6 +170,7 @@ char					*envp_get_value(const char *var_name, t_env *env);
 char					*envp_get_var(const char *var);
 char					**envp_sort(t_env *env);
 
+void	access_failure(char *command);
 void					add_cmd_to_list(char *str, int cur, int start,
 							t_cmd_line **head);
 void					close_fds(t_cmd_line **cmd_line);
@@ -187,6 +188,7 @@ void					init_type(t_token *new);
 void					organize_redirections(t_cmd_line **full_cmd);
 void					read_command_line(char **line);
 void					realloc_str_and_expansions(char **arg, t_env *envp);
+void run_shell(void);
 void					sig_int(int code);
 void					sig_quit(int code);
 void					strcpy_adding_spaces(char **new, char *str);

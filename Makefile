@@ -67,6 +67,7 @@ HELPERS = binaries/access_failure.c \
 	redir/redirect_stdout.c \
 	redir/set_file_types.c \
 	redir/set_heredoc_limit.c \
+	shell/run_shell.c \
 	signals/init_signals.c \
 	signals/signal_handlers.c \
 	spaces/add_spaces_to_delims.c \
