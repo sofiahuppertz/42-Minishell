@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 21:13:40 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 12:50:52 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,7 @@ int						export(const char **args, t_env **env, int fd);
 int						find_open_quotes(char *line, int max_index);
 int						fork_and_exec(pid_t *pid, int idx,
 							t_cmd_line **cmd_line, t_cmd_line **simple_cmd);
-int						ft_execve(char *path, char **args, char **dirs,
-							t_cmd_line **cmd_line);
+int						ft_execve(char *path, char **args, char **dirs);
 int						get_token_length(char *str, int i);
 int						init_envp(char **envp);
 int						init_signals(void);

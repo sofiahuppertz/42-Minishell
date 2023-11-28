@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork_and_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:06 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:52:08 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 12:46:10 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line,
 			{
 				g_sig.status = exec_builtin((const char **)(*simple_cmd)->argv,
 						(*simple_cmd)->fd_out);
+				delete_cmd_line(cmd_line);
+				delete_envp();
 				exit(g_sig.status);
 			}
 			else

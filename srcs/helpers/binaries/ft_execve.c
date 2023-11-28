@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:08 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:47:09 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 12:48:46 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int	ft_execve(char *path, char **args, char **dirs, t_cmd_line **cmd_line)
+int	ft_execve(char *path, char **args, char **dirs)
 {
 	if (execve(path, args, dirs) == -1)
 	{
@@ -24,7 +24,6 @@ int	ft_execve(char *path, char **args, char **dirs, t_cmd_line **cmd_line)
 		ft_memdel_2d((void **)dirs);
 		ft_memdel_2d((void **)args);
 		ft_memdel((void *)path);
-		delete_cmd_line(cmd_line);
 		delete_envp();
 		exit(ERROR);
 	}
