@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_into_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:23 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:52:27 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 23:17:18 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	read_into_heredoc(int fd, char *limitor)
 	envp = *get_adress_envp();
 	while (1)
 	{
+		//g_sig.pid = 0;
 		here_line = readline("> ");
 		if (here_line == NULL)
 			return (0);
@@ -30,6 +31,7 @@ int	read_into_heredoc(int fd, char *limitor)
 		ft_putendl_fd(here_line, fd);
 		ft_memdel((void *)here_line);
 	}
+	//g_sig.pid = 1;
 	ft_memdel((void *)here_line);
 	return (0);
 }

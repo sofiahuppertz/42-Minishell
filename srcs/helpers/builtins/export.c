@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:52 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 22:22:28 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/28 23:41:06 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,56 +67,69 @@ static void	print_env(t_env *env, int fd)
 	ft_memdel_2d((void **)sorted_env);
 }
 
-int	export(const char **args, t_env **env, int fd)
+static int handle_add_new_vars(const char *arg, int status, t_env **env)
 {
-	int		status;
-	int 	idx;
-	int		value_in_env;
-	char	*name;
-	char	*value;
+	char *value;
 
-
-
-	status = 0;
-	name = NULL;
-	value = NULL;
-	if (!args[1])
-		print_env(*env, fd);
-	else
+	if (status == 3)
 	{
-		idx = 1;
-		while (args[idx])
-		{
-			status = envp_is_valid_varname(args[idx]);
-			if (status <= 0)
-			{
-				status = print_error(status, (const char *)args[idx]);
-				idx += 1;
-				continue;
-			}
-			name = envp_get_var(args[idx]);
-			value_in_env = envp_is_value_in_env(name);
-			if (name && value_in_env)
-			{
-				value = get_value(args[idx], status);
-				status = envp_modify_var((const char *)value, (const char *)name,
-						env);
-				ft_memdel(value);
-			}
-			else if (name)
-			{
-				if (status == 3)
-				{
-					value = ft_strjoin(args[idx], "\"\"");
-					status = envp_add_var((const char *)value, env);
-					ft_memdel(value);
-				}
-				else
-					status = envp_add_var((const char *)args[idx], env);
-			}
-			ft_memdel(name);
-			idx += 1;
-		}
+		value = ft_strjoin(arg, "\"\"");
+		status = envp_add_var(value, env);
+		ft_memdel(value);
 	}
-	return (status);
+	else
+		status = envp_add_var(arg, env);
+
+	return status;
+}
+
+static int handle_arg(const char *arg, t_env **env)
+{
+	int status;
+	int value_in_env;
+	char *name;
+	char *value;
+
+	status = envp_is_valid_varname(arg);
+	if (status <= 0)
+		return print_error(status, arg);
+
+	name = envp_get_var(arg);
+	value_in_env = envp_is_value_in_env(name);
+
+	if (name && value_in_env)
+	{
+		value = get_value(arg, status);
+		status = envp_modify_var(value, name, env);
+		ft_memdel(value);
+	}
+	else if (name)
+		status = handle_add_new_vars(arg, status, env);
+
+	ft_memdel(name);
+
+	return status;
+}
+
+int export(const char **args, t_env **env, int fd)
+{
+	int status;
+	int idx;
+
+	if (!args[1])
+	{
+		print_env(*env, fd);
+		return 0;
+	}
+
+	idx = 1;
+	while (args[idx])
+	{
+		status = handle_arg(args[idx], env);
+		if (status <= 0)
+			return status;
+		idx += 1;
+	}
+
+	return status;
 }
