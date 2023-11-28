@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:56:30 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 11:59:45 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/28 12:29:37 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int argc, char **argv, char **envp)
 		delete_cmd_line(&full_cmd);
 	}
 	delete_envp();
+	clear_history();
 	(void)argc;
 	(void)argv;
 	return (g_sig.status);
