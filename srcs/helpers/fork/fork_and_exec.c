@@ -6,11 +6,32 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:06 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 20:32:01 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 00:57:36 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
+
+
+static void close_input_output(t_cmd_line **simple_cmd)
+{
+	if ((*simple_cmd)->fd_in != 0)
+		close((*simple_cmd)->fd_in);
+	if ((*simple_cmd)->fd_out != 1)
+		close((*simple_cmd)->fd_out);
+	return ;
+}
+
+static void 	handle_builtin(t_cmd_line **simple_cmd, t_cmd_line **cmd_line)
+{
+	const char **args;
+
+	args = (const char **)(*simple_cmd)->argv;
+	g_sig.status = exec_builtin(args, (*simple_cmd)->fd_out, 1);
+	delete_cmd_line(cmd_line);
+	delete_envp();
+	exit(g_sig.status);
+}
 
 int	fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line,
 		t_cmd_line **simple_cmd)
@@ -28,21 +49,11 @@ int	fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line,
 		if ((*simple_cmd)->argv)
 		{
 			if (is_builtin((*simple_cmd)->argv[0]))
-			{
-				g_sig.status = exec_builtin((const char **)(*simple_cmd)->argv,
-											(*simple_cmd)->fd_out,
-											1);
-				delete_cmd_line(cmd_line);
-				delete_envp();
-				exit(g_sig.status);
-			}
+				handle_builtin(simple_cmd, cmd_line);
 			else
 				exec_binary((*simple_cmd)->argv, cmd_line);
 		}
 	}
-	if ((*simple_cmd)->fd_in != 0)
-		close((*simple_cmd)->fd_in);
-	if ((*simple_cmd)->fd_out != 1)
-		close((*simple_cmd)->fd_out);
+	close_input_output(simple_cmd);
 	return (0);
 }
