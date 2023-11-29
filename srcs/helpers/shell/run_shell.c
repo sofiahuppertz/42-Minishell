@@ -6,16 +6,28 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:51:42 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 23:16:20 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:00:26 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-void	run_shell(void)
+static void process_command(char **str, t_cmd_line **full_cmd)
 {
-	char		*str;
-	t_cmd_line	*full_cmd;
+	g_sig.pid = 1;
+	if (*str != NULL)
+		if (parsing(str, full_cmd) && *full_cmd != NULL)
+		{
+			ft_memdel((void *)*str);
+			execution(full_cmd);
+		}
+	delete_cmd_line(full_cmd);
+}
+
+void run_shell(void)
+{
+	char *str;
+	t_cmd_line *full_cmd;
 
 	full_cmd = NULL;
 	str = NULL;
@@ -28,15 +40,8 @@ void	run_shell(void)
 		if (g_sig.exit_shell == 1)
 		{
 			ft_memdel((void *)str);
-			break ;
+			break;
 		}
-		g_sig.pid = 1;
-		if (str != NULL)
-			if (parsing(&str, &full_cmd) && full_cmd != NULL)
-			{
-				ft_memdel((void *)str);
-				execution(&full_cmd);
-			}
-		delete_cmd_line(&full_cmd);
+		process_command(&str, &full_cmd);
 	}
 }

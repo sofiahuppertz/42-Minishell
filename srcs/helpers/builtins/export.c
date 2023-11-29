@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:52 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 00:47:02 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 12:41:04 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,6 @@ static char	*get_value(const char *arg, int status)
 	else
 		value = ft_strdup("\"\"");
 	return (value);
-}
-
-static void	print_env(t_env *env, int fd)
-{
-	char	**sorted_env;
-	int		var;
-
-	var = 0;
-	sorted_env = envp_sort(env);
-	while (sorted_env[var])
-	{
-		ft_putstr_fd("declare -x ", fd);
-		ft_putendl_fd(sorted_env[var], fd);
-		var++;
-	}
-	ft_memdel_2d((void **)sorted_env);
 }
 
 static int handle_add_new_vars(const char *arg, int status, t_env **env)
