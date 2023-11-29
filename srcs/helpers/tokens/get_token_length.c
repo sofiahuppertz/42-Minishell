@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:55:45 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:55:48 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:14:56 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	get_token_length(char *str, int i)
 	{
 		if (str[i + token_len] == ' ' && c == ' ')
 			break ;
-		if (c == ' ' && (str[i + token_len] == '\'' || str[i
-				+ token_len] == '\"'))
+		if (c == ' ' && (str[i + token_len] == '\''
+				|| str[i + token_len] == '\"'))
 			c = str[i + token_len];
 		else if (c != ' ' && str[i + token_len] == c)
 		{

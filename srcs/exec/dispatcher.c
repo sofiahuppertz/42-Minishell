@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dispatcher.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:46:41 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 23:44:43 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:13:23 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	dispatcher(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
 		simple_cmd = *cmd_line;
 		if (num_cmds == 1 && is_builtin(simple_cmd->argv[0]))
 			g_sig.status = exec_builtin((const char **)(*cmd_line)->argv,
-										(*cmd_line)->fd_out,
-										0);
-		else if (!simple_cmd->argv[0] && (simple_cmd->fd_out != 1 || simple_cmd->fd_in != 0))
+					(*cmd_line)->fd_out, 0);
+		else if (!simple_cmd->argv[0] && (simple_cmd->fd_out != 1
+				|| simple_cmd->fd_in != 0))
 			g_sig.status = 0;
 		else
 			handle_multiple_commands(num_cmds, pid, &cmd_line, &simple_cmd);

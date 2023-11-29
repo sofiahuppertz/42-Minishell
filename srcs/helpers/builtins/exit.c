@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:47 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 23:08:54 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 12:36:50 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
-
 
 static int	print_numeric_arg_error(const char *arg)
 {
@@ -23,8 +22,8 @@ static int	print_numeric_arg_error(const char *arg)
 
 int	exit_cmd(const char **cmd)
 {
-	int arg_len;
-	int all_digit;
+	int	arg_len;
+	int	all_digit;
 
 	if (cmd[1])
 		arg_len = ft_strlen(cmd[1]);

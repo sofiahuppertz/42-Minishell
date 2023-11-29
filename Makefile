@@ -34,6 +34,7 @@ HELPERS = binaries/access_failure.c \
 	envp/envp_is_value_assigned.c \
 	envp/envp_is_value_in_env.c \
 	envp/envp_modify_var.c \
+	envp/envp_print_sorted_env.c \
 	envp/envp_remove_var.c \
 	envp/envp_sort.c \
 	envp/envp_update_pwd.c \

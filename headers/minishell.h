@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 22:24:27 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:15:44 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,13 @@ typedef struct s_sig
 	pid_t				pid;
 }						t_sig;
 
-
 int						add_spaces_to_delims(char **str);
-int	break_simple_cmds(char *line,
-						t_cmd_line **simple_cmd_list);
+int						break_simple_cmds(char *line,
+							t_cmd_line **simple_cmd_list);
 int						cd(const char **args, t_env **env);
 int						cmd_count(t_cmd_line *cmd_line);
-int	create_heredoc(t_cmd_line **simple_cmd,
-					t_token **token);
+int						create_heredoc(t_cmd_line **simple_cmd,
+							t_token **token);
 int						create_pipes(t_cmd_line **cmd_line);
 int						dispatcher(t_cmd_line **cmd_line, pid_t *pid,
 							int num_cmds);
@@ -121,9 +120,9 @@ int						envp_count(t_env *env);
 int						envp_is_valid_varname(const char *varname);
 int						envp_is_value_assigned(const char *str);
 int						envp_is_value_in_env(const char *value);
-int	envp_modify_var(const char *new_value,
-					const char *var_name,
-					t_env **env);
+int						envp_modify_var(const char *new_value,
+							const char *var_name, t_env **env);
+void					envp_print_sorted_env(t_env *env, int fd);
 int						envp_remove_var(const char *var_name, t_env **env);
 int						execution(t_cmd_line **full_cmd);
 int						exec_builtin(const char **cmd_lst, int fd, int child);
@@ -147,8 +146,8 @@ int						pwd(int fd);
 int						quotes_are_closed(char *line);
 int						read_into_heredoc(int fd, char *limitor);
 int						redir(t_cmd_line **simple_cmd);
-int	redirect_heredoc(t_cmd_line **simple_cmd,
-						t_token *token);
+int						redirect_heredoc(t_cmd_line **simple_cmd,
+							t_token *token);
 int						redirect_stdin(t_cmd_line **simple_cmd, t_token *token);
 int						redirect_stdout(t_cmd_line **cmdl, t_token *token,
 							short int flag);
@@ -171,7 +170,7 @@ char					*envp_get_value(const char *var_name, t_env *env);
 char					*envp_get_var(const char *var);
 char					**envp_sort(t_env *env);
 
-void	access_failure(char *command);
+void					access_failure(char *command);
 void					add_cmd_to_list(char *str, int cur, int start,
 							t_cmd_line **head);
 void					close_fds(t_cmd_line **cmd_line);
@@ -179,7 +178,7 @@ void					cmd_list_add_back(t_cmd_line **head, t_cmd_line *last);
 void					count_args_in_cmd(t_cmd_line *simple_cmd, int *len);
 void					cpy_args_in_cmd(t_cmd_line *simple_cmd);
 void					delete_cmd_line(t_cmd_line **cmd_line);
-void delete_cmd_line_except_argv(t_cmd_line **cmd_line);
+void					delete_cmd_line_except_argv(t_cmd_line **cmd_line);
 void					delete_envp(void);
 void					delete_pipe_fds(int **fds);
 void					delete_tokens(t_token *head);
@@ -190,7 +189,7 @@ void					init_type(t_token *new);
 void					organize_redirections(t_cmd_line **full_cmd);
 void					read_command_line(char **line);
 void					realloc_str_and_expansions(char **arg, t_env *envp);
-void run_shell(void);
+void					run_shell(void);
 void					sig_int(int code);
 void					sig_quit(int code);
 void					strcpy_adding_spaces(char **new, char *str);

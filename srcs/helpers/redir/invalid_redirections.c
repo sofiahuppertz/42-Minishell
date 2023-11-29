@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:53:30 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:49:31 by shuppert         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:14:10 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	invalid_redirections(char *str)
 	{
 		if (str[i] == '<' || str[i] == '>')
 		{
-			if ((last_redirect != '\0' && last_redirect != str[i]) ||
-				(i > 1 && str[i - 1] == str[i] && str[i - 2] == str[i]))
+			if ((last_redirect != '\0' && last_redirect != str[i])
+				|| (i > 1 && str[i - 1] == str[i] && str[i - 2] == str[i]))
 			{
 				if (!find_open_quotes(str, i))
 					return (return_error(str[i]));

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fork_and_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:06 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 00:57:36 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 11:31:51 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-
-static void close_input_output(t_cmd_line **simple_cmd)
+static void	close_input_output(t_cmd_line **simple_cmd)
 {
 	if ((*simple_cmd)->fd_in != 0)
 		close((*simple_cmd)->fd_in);
@@ -22,9 +21,9 @@ static void close_input_output(t_cmd_line **simple_cmd)
 	return ;
 }
 
-static void 	handle_builtin(t_cmd_line **simple_cmd, t_cmd_line **cmd_line)
+static void	handle_builtin(t_cmd_line **simple_cmd, t_cmd_line **cmd_line)
 {
-	const char **args;
+	const char	**args;
 
 	args = (const char **)(*simple_cmd)->argv;
 	g_sig.status = exec_builtin(args, (*simple_cmd)->fd_out, 1);
@@ -41,7 +40,7 @@ int	fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line,
 		exit(1);
 	if (pid[idx] == 0)
 	{
-		//rl_clear_history();
+		rl_clear_history();
 		ft_memdel((void *)pid);
 		dup2((*simple_cmd)->fd_in, STDIN_FILENO);
 		dup2((*simple_cmd)->fd_out, STDOUT_FILENO);

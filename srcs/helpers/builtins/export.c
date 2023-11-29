@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:52 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 12:41:04 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 12:43:09 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ static char	*get_value(const char *arg, int status)
 	return (value);
 }
 
-static int handle_add_new_vars(const char *arg, int status, t_env **env)
+static int	handle_add_new_vars(const char *arg, int status, t_env **env)
 {
-	char *value;
+	char	*value;
 
 	if (status == 3)
 	{
@@ -63,19 +63,17 @@ static int handle_add_new_vars(const char *arg, int status, t_env **env)
 	}
 	else
 		status = envp_add_var(arg, env);
-
-	return status;
+	return (status);
 }
 
-static int handle_arg(const char *arg, t_env **env, int status)
+static int	handle_arg(const char *arg, t_env **env, int status)
 {
-	int value_in_env;
-	char *name;
-	char *value;
+	int		value_in_env;
+	char	*name;
+	char	*value;
 
 	name = envp_get_var(arg);
 	value_in_env = envp_is_value_in_env(name);
-
 	if (name && value_in_env)
 	{
 		value = get_value(arg, status);
@@ -84,23 +82,20 @@ static int handle_arg(const char *arg, t_env **env, int status)
 	}
 	else if (name)
 		status = handle_add_new_vars(arg, status, env);
-
 	ft_memdel(name);
-
-	return status;
+	return (status);
 }
 
-int export(const char **args, t_env **env, int fd)
+int	export(const char **args, t_env **env, int fd)
 {
-	int status;
-	int idx;
+	int	status;
+	int	idx;
 
 	if (!args[1])
 	{
-		print_env(*env, fd);
-		return 0;
+		envp_print_sorted_env(*env, fd);
+		return (0);
 	}
-
 	idx = 1;
 	while (args[idx])
 	{
@@ -109,10 +104,10 @@ int export(const char **args, t_env **env, int fd)
 		{
 			print_error(status, args[idx]);
 			idx += 1;
-			continue;
+			continue ;
 		}
 		status = handle_arg(args[idx], env, status);
 		idx += 1;
 	}
-	return status;
+	return (status);
 }

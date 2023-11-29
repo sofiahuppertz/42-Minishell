@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:15 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 21:21:02 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 12:37:03 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	cd_home(t_env **env)
 {
 	char	*home_path;
 	int		exit_status;
-	char   curr_dir[PATH_MAX + 1];
+	char	curr_dir[PATH_MAX + 1];
 
 	home_path = envp_get_value("HOME", *env);
 	if (!home_path)
@@ -48,7 +48,7 @@ static int	cd_prev_dir(t_env **env)
 {
 	char	*prev_path;
 	int		exit_status;
-	char 	curr_dir[PATH_MAX + 1];
+	char	curr_dir[PATH_MAX + 1];
 
 	prev_path = envp_get_value("OLDPWD", *env);
 	if (!prev_path)
@@ -65,8 +65,8 @@ static int	cd_prev_dir(t_env **env)
 
 int	cd(const char **args, t_env **env)
 {
-	int	exit_status;
-	char curr_dir[PATH_MAX + 1];
+	int		exit_status;
+	char	curr_dir[PATH_MAX + 1];
 
 	if (!args[1])
 		exit_status = cd_home(env);

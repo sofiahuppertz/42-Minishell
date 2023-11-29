@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strlen_with_expansions.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:51:21 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 22:51:19 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:03:31 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	strlen_with_expansions(const char *arg, t_env *env)
 		if (arg[idx] == EXPANSION)
 		{
 			handle_expansion(arg, &idx, &len, env);
-			continue;
+			continue ;
 		}
 		len++;
 		idx++;

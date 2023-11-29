@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:20 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 21:46:14 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 12:37:32 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static size_t	count_args(const char **args)
 	return (size);
 }
 
-static  int  handle_n_option(const char **args, size_t *idx)
+static int	handle_n_option(const char **args, size_t *idx)
 {
 	int	n_option;
-	int n_idx;
+	int	n_idx;
 
 	n_option = 0;
 	while (args[*idx] && args[*idx][0] == '-')
