@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:53:00 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 22:34:48 by sofia            ###   ########.fr       */
+/*   Updated: 2023/11/29 11:38:34 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	duplicate_pipes(char *str)
 		}
 		idx += 1;
 	}
-	idx -= 1;
+	if (idx > 0)
+		idx -= 1;
 	while (idx >= 0 && ft_iswhitespace(str[idx]))
 		idx -= 1;
 	if (str[idx] == '|')
