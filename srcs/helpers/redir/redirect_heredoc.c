@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:53:58 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:54:01 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:14:16 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	redirect_heredoc(t_cmd_line **simple_cmd, t_token *token)
 	if ((*simple_cmd)->fd_in == -1)
 	{
 		ft_putstr_fd("minishell: Error creating heredoc", 2);
-		g_sig.stop_exec = 1;
+		*stop_exec() = 1;
 		return (1);
 	}
 	return (0);

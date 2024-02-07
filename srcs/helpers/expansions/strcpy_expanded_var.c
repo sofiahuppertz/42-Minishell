@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strcpy_expanded_var.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:51:04 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:51:09 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:05:35 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*get_expanded_var(char *arg, int idx, t_env *env)
 	i = 0;
 	if (arg[idx] == '?')
 	{
-		var_value = ft_itoa(g_sig.status);
+		var_value = ft_itoa(*status_pointer());
 		return (var_value);
 	}
 	if (ft_isdigit(arg[idx]))

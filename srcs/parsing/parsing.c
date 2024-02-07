@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:56:09 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/07 11:40:44 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:05:35 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	parsing(char **str, t_cmd_line **cmd_line)
 	{
 		if (!syntax_ok(*str))
 		{
-			g_sig.status = 258;
+			*status_pointer() = 258;
 			return (0);
 		}
 		add_spaces_to_delims(str);

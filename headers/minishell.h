@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 13:15:44 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:39:22 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,6 @@ typedef struct s_sig
 {
 	int					sigint;
 	int					sigquit;
-	int					status;
-	int					exit_shell;
-	int					stop_exec;
-	pid_t				pid;
 }						t_sig;
 
 int						add_spaces_to_delims(char **str);
@@ -194,6 +190,11 @@ void					sig_int(int code);
 void					sig_quit(int code);
 void					strcpy_adding_spaces(char **new, char *str);
 void					strlen_simple_cmd(char *str, int *i);
+
+int						*cmd_in_progress(void);
+int						*status_pointer(void);
+int						*exit_shell(void);
+int						*stop_exec(void);
 
 t_env					**get_adress_envp(void);
 

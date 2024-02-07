@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_shell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:51:42 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/07 13:07:38 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:31:33 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	process_command(char **str, t_cmd_line **full_cmd)
 {
-	g_sig.pid = 1;
+	*cmd_in_progress() = 1;
 	if (*str != NULL)
 	{
 		if (parsing(str, full_cmd))
@@ -36,17 +36,18 @@ void	run_shell(void)
 
 	full_cmd = NULL;
 	str = NULL;
-	g_sig.exit_shell = 0;
-	g_sig.stop_exec = 0;
-	while (!g_sig.exit_shell)
+	*exit_shell() = 0;
+	*stop_exec() = 0;
+	while (!*exit_shell())
 	{
 		init_signals();
 		read_command_line(&str);
-		if (g_sig.exit_shell == 1)
+		if (*exit_shell() == 1)
 		{
 			ft_memdel((void *)str);
 			break ;
 		}
 		process_command(&str, &full_cmd);
+		*cmd_in_progress() = 0;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:46:34 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 21:45:30 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/07 19:14:20 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	execution(t_cmd_line **full_cmd)
 	pid = ft_calloc(sizeof(pid_t), num_cmds);
 	if (pid == NULL)
 		exit_failure();
-	if (!g_sig.stop_exec)
+	if (!*stop_exec())
 	{
 		dispatcher(full_cmd, pid, num_cmds);
 		wait_pid(full_cmd, pid, num_cmds);
 	}
 	ft_memdel((void *)pid);
-	g_sig.stop_exec = 0;
+	*stop_exec() = 0;
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strlen_expanded_var.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:51:12 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:46:26 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:05:35 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	strlen_expanded_var(const char *arg, int idx, t_env *env)
 	buffer = NULL;
 	if (arg[idx] == '?')
 	{
-		buffer = ft_itoa(g_sig.status);
+		buffer = ft_itoa(*status_pointer());
 		len = ft_strlen(buffer);
 	}
 	else if (ft_isdigit(arg[idx]))

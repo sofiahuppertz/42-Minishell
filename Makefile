@@ -49,6 +49,10 @@ HELPERS = binaries/access_failure.c \
 	file/close_fds.c \
 	fork/fork_and_exec.c \
 	fork/wait_pid.c \
+	global/cmd_in_progress.c \
+	global/exit_shell.c \
+	global/status_pointer.c \
+	global/stop_exec.c \
 	heredoc/create_heredoc.c \
 	heredoc/read_into_heredoc.c \
 	memory/delete_cmd_line.c \

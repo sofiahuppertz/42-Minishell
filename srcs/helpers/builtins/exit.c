@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:47 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 12:36:50 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:09:34 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	exit_cmd(const char **cmd)
 
 	if (cmd[1])
 		arg_len = ft_strlen(cmd[1]);
-	g_sig.exit_shell = 1;
+	*exit_shell() = 1;
 	ft_putendl_fd("exit 👋", 2);
 	all_digit = ft_is_all(cmd[1], &ft_isdigit);
 	if (cmd[1] && all_digit && cmd[2] && arg_len <= 20)
 	{
 		ft_putendl_fd("minishell: exit: too many arguments", 2);
-		g_sig.exit_shell = 0;
+		*exit_shell() = 0;
 		return (1);
 	}
 	else if (cmd[1])
