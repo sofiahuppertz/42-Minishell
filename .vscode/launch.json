@@ -10,11 +10,12 @@
             "request": "launch",
             "program": "${workspaceFolder}/minishell",
             "args": [],
-            "stopAtEntry": false,
+            "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": true,
             "MIMode": "lldb", 
+            "miDebuggerPath": "/usr/bin/lldb"
         }
     ]
 }

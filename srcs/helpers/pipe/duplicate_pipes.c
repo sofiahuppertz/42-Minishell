@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:53:00 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 11:40:42 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:07:15 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	duplicate_pipes(char *str)
 
 	idx = 0;
 	pipe = 0;
+	if (str == NULL)
+		return (0);
 	while (str[idx])
 	{
 		if (str[idx] != ' ' && str[idx] != '|')
