@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:10 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/07 19:14:16 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/07 21:14:01 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	wait_pid(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
 {
-	int	idx;
+	int idx;
+	int *status;
 
 	idx = 0;
 	if ((num_cmds == 1 && is_builtin((*cmd_line)->argv[0])) || *stop_exec())
@@ -23,13 +24,14 @@ int	wait_pid(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
 	}
 	while (idx < num_cmds)
 	{
-		waitpid(pid[idx], &*status_pointer(), 0);
-		if (g_sig.sigint == 1 || g_sig.sigquit == 1)
-			return (130);
-		if (WIFEXITED(*status_pointer))
-			*status_pointer() = WEXITSTATUS(*status_pointer());
+		status = status_pointer();
+		waitpid(pid[idx], status, 0);
+		if (caught_signal == 2 || caught_signal == 3)
+			*status = 130;
+		else if (WIFEXITED(*status))
+			*status = WEXITSTATUS(*status);
 		else
-			*status_pointer() = 1;
+			*status = 1;
 		idx++;
 	}
 	return (0);

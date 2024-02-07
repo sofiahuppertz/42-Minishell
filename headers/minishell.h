@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/07 19:39:22 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/07 20:43:09 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,6 @@ typedef struct s_env
 	int					declare;
 	struct s_env		*next;
 }						t_env;
-
-typedef struct s_sig
-{
-	int					sigint;
-	int					sigquit;
-}						t_sig;
 
 int						add_spaces_to_delims(char **str);
 int						break_simple_cmds(char *line,
@@ -186,8 +180,8 @@ void					organize_redirections(t_cmd_line **full_cmd);
 void					read_command_line(char **line);
 void					realloc_str_and_expansions(char **arg, t_env *envp);
 void					run_shell(void);
-void					sig_int(int code);
-void					sig_quit(int code);
+void					sigint_handler(int code);
+void					sigquit_handler(int code);
 void					strcpy_adding_spaces(char **new, char *str);
 void					strlen_simple_cmd(char *str, int *i);
 
@@ -201,6 +195,6 @@ t_env					**get_adress_envp(void);
 t_token					*create_node(int str_len);
 t_token					*get_next_token(char *str, int *idx);
 
-extern t_sig			g_sig;
+extern int caught_signal;
 
 #endif
