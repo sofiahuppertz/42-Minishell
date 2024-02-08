@@ -3,7 +3,7 @@ NAME	= minishell
 INCLUDES = -I./headers -I./headers/Libft/headers
 
 
-CFLAGS = -Wall -Wextra -Werror -g $(INCLUDES) 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g $(INCLUDES) 
 
 
 LIBFT = headers/libft/Libft/libft.a

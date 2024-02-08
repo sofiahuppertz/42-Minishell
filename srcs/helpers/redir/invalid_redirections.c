@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invalid_redirections.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:53:30 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 13:14:10 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:34:19 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@ static int	return_error(char c)
 	return (1);
 }
 
+static int count_previous_redir(char *str, int i)
+{
+	int count;
+
+	count = 0;
+	while (i >= 0)
+	{
+		if (str[i] == '>' || str[i] == '<')
+			count++;
+		if (ft_iswhitespace(str[i]) == 0 && str[i] != '>' && str[i] != '<')
+			break;
+		i--;
+	}
+	return (count);
+}
+
 int	invalid_redirections(char *str)
 {
 	int		i;
@@ -35,7 +51,7 @@ int	invalid_redirections(char *str)
 		if (str[i] == '<' || str[i] == '>')
 		{
 			if ((last_redirect != '\0' && last_redirect != str[i])
-				|| (i > 1 && str[i - 1] == str[i] && str[i - 2] == str[i]))
+				|| count_previous_redir(str, i) > 2)
 			{
 				if (!find_open_quotes(str, i))
 					return (return_error(str[i]));
@@ -50,3 +66,5 @@ int	invalid_redirections(char *str)
 		return (return_error(last_redirect));
 	return (0);
 }
+
+

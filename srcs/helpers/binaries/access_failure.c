@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:46:57 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/07 21:16:25 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/07 21:23:58 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	access_failure(char *command)
 {
 	ft_putstr_fd("minishell: ", STDERR);
 	if (!command)
+	{
 		ft_putendl_fd(": command not found", STDERR);
+		*status_pointer() = 127;
+	}
 	else
 	{
 		ft_putstr_fd(command, STDERR);
