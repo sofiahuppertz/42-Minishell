@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:50:15 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 16:12:56 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:13:18 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	**envp_sort(t_env *env)
 	int		i;
 
 	count = envp_count(env) + 1;
-	sorted_envp = ft_calloc(sizeof(char *), count);
+	sorted_envp = ft_calloc(sizeof(char *), count + 1);
 	if (!sorted_envp)
 		return (NULL);
 	i = 0;
