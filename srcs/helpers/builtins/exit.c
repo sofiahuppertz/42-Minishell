@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:47 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/07 19:09:34 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/08 11:09:36 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	print_numeric_arg_error(const char *arg)
 	ft_putstr_fd("minishell: exit: ", 2);
 	ft_putstr_fd((char *)arg, 2);
 	ft_putendl_fd(": numeric argument required", 2);
-	return (255);
+	return (2);
 }
 
 int	exit_cmd(const char **cmd)

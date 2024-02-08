@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_command_line.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:48:53 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/07 19:09:34 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/08 11:59:57 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	read_command_line(char **line)
 {
 	if (line == NULL)
-		return ;
+		return ;	
 	*line = readline("minishell ▸ ");
 	if (*line == NULL)
 	{
@@ -24,6 +24,10 @@ void	read_command_line(char **line)
 		*exit_shell() = 1;
 	}
 	if ((*line) && (*line)[0] != '\0')
+	{
 		add_history(*line);
+		signal(SIGQUIT, sigquit_handler);
+	}
+		
 	return ;
 }

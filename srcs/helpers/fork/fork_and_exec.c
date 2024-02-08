@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork_and_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:06 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/07 19:05:35 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/08 10:47:14 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line,
 		exit(1);
 	if (pid[idx] == 0)
 	{
-		//rl_clear_history();
+		rl_clear_history();
 		ft_memdel((void *)pid);
 		dup2((*simple_cmd)->fd_in, STDIN_FILENO);
 		dup2((*simple_cmd)->fd_out, STDOUT_FILENO);
