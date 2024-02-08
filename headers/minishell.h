@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/08 12:00:56 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/08 23:12:15 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,6 @@ t_env					**get_adress_envp(void);
 t_token					*create_node(int str_len);
 t_token					*get_next_token(char *str, int *idx);
 
-extern int caught_signal;
+extern volatile sig_atomic_t caught_signal;
 
 #endif
