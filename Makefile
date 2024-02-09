@@ -3,7 +3,7 @@ NAME	= minishell
 INCLUDES = -I./headers -I./headers/Libft/headers
 
 
-CFLAGS = -Wall -Wextra -Werror $(INCLUDES) 
+CFLAGS = -g3 -Wall -Wextra -Werror $(INCLUDES) 
 
 
 LIBFT = headers/libft/Libft/libft.a
@@ -37,6 +37,7 @@ HELPERS = binaries/access_failure.c \
 	envp/envp_print_sorted_env.c \
 	envp/envp_remove_var.c \
 	envp/envp_sort.c \
+	envp/get_adress_char_envp.c \
 	envp/envp_update_pwd.c \
 	envp/get_adress_envp.c \
 	envp/init_envp.c \
@@ -115,7 +116,7 @@ $(NAME): $(OBJS) $(LIBFT)
 	cc $(CFLAGS) $(OBJS) -o $(NAME) -lreadline $(LIBFT)
 
 %.o: srcs/%.c
-	cc -g $(CFLAGS) -c $< -o $@
+	cc $(CFLAGS) -c $< -o $@
 
 fclean	: clean
 	rm -f $(NAME) 

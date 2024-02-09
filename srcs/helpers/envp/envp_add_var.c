@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:49:08 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:50:26 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:25:44 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	envp_add_var(const char *new_variable, t_env **env)
 	new_node = ft_calloc(sizeof(t_env), 1);
 	if (!env || !new_node)
 		return (-1);
+	
 	new_node->str = ft_strdup(new_variable);
 	if (!new_node->str)
 		return (ERROR);

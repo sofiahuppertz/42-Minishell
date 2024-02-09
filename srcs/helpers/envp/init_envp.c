@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_envp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:50:30 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 20:44:11 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/09 19:32:18 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	init_envp(char **envp)
 {
+	char ***char_envp;
 	t_env	**env;
 	int		i;
 
@@ -27,5 +28,7 @@ int	init_envp(char **envp)
 		i++;
 	}
 	init_shell_level();
+	char_envp = get_adress_char_envp();
+	*char_envp = envp;
 	return (0);
 }

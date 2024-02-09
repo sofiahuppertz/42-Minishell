@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:55:22 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:55:24 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:02:01 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	cpy_args_in_cmd(t_cmd_line *simple_cmd)
 	{
 		if (token->type == ARG || token->type == BUILTIN)
 		{
-			simple_cmd->argv[i] = token->str;
+			simple_cmd->argv[i] = ft_strdup(token->str);
 			i++;
 		}
 		token = token->next;

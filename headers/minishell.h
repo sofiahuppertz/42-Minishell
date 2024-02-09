@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/08 23:12:15 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/09 19:33:11 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_cmd_line
 
 typedef struct s_env
 {
+	char **envp;
 	char				*str;
 	int					declare;
 	struct s_env		*next;
@@ -194,6 +195,8 @@ t_env					**get_adress_envp(void);
 
 t_token					*create_node(int str_len);
 t_token					*get_next_token(char *str, int *idx);
+char ***get_adress_char_envp(void);
+
 
 extern volatile sig_atomic_t caught_signal;
 
