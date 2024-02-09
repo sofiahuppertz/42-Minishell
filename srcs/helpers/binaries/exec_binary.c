@@ -3,38 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   exec_binary.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:03 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/09 19:46:17 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:57:55 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static char	*search_path_for_command(char **dirs, char *command)
+static char	*search_path_for_command(char *command)
 {
+	char **paths;
 	char	*path;
 	char	*temp;
 	int		i;
 
 	i = 0;
-	while (dirs[i])
+	paths = ft_split(getenv("PATH"), ':');
+	while (paths[i])
 	{
-		temp = ft_strjoin(dirs[i], "/");
+		temp = ft_strjoin(paths[i], "/");
 		path = ft_strjoin(temp, command);
 		free(temp);
 		if (access(path, X_OK) == 0)
-			return (path);
-		else if (errno != ENOENT)
-		{
-			free(path);
-			return (NULL);
-		}
+			break;
 		free(path);
+		path = NULL;
+		if (errno != ENOENT)
+			break;
 		i++;
 	}
-	return (NULL);
+	ft_memdel_2d((void **)paths);
+	return (path);
 }
 
 static void	handle_command_not_found(char **args,
@@ -52,12 +53,10 @@ static void	handle_command_not_found(char **args,
 int	exec_binary(char **args, t_cmd_line **cmd_line)
 {
 	char	*path;
-	char	**dirs;
 	char	**env;
 
 	delete_envp();
 	env = *get_adress_char_envp();
-	dirs = ft_split(getenv("PATH"), ':');
 	if (!args[0])
 		handle_command_not_found(args, &cmd_line);
 	else if (access(args[0], X_OK) == 0)
@@ -66,17 +65,14 @@ int	exec_binary(char **args, t_cmd_line **cmd_line)
 	}
 	else
 	{
-		path = search_path_for_command(dirs, args[0]);
-		ft_memdel_2d((void **)dirs);
+		path = search_path_for_command(args[0]);
 		if (path != NULL)
 		{
 			delete_cmd_line_except_argv(cmd_line);
 			ft_execve(path, args, env);
 		}
 		else
-		{
 			handle_command_not_found(args, &cmd_line);
-		}
 	}
 	return (0);
 }
