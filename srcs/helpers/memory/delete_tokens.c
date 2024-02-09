@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:43 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 16:18:46 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:06:53 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	delete_tokens(t_token *head)
 	{
 		temp = head;
 		head = head->next;
+		ft_memdel((void *)temp->str);
 		ft_memdel((void *)temp);
 	}
 }

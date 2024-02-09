@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:51:47 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 16:03:55 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:04:35 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	close_fds(t_cmd_line **cmd_line)
 	simple_cmd = *cmd_line;
 	while (simple_cmd)
 	{
-		if (simple_cmd->fd_in != 0)
+		if (simple_cmd->fd_in != 0 && simple_cmd->fd_in != -1)
 			close(simple_cmd->fd_in);
-		if (simple_cmd->fd_out != 1)
+		if (simple_cmd->fd_out != 1 && simple_cmd->fd_out != -1)
 			close(simple_cmd->fd_out);
 		simple_cmd = simple_cmd->next;
 	}
