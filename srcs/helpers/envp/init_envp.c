@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:50:30 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/09 19:32:18 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/11 14:32:50 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	init_envp(char **envp)
 {
-	char ***char_envp;
+	char	***char_envp;
 	t_env	**env;
 	int		i;
 

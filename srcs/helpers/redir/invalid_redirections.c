@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invalid_redirections.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:53:30 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/08 16:34:19 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/11 14:32:21 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static int	return_error(char c)
 	return (1);
 }
 
-static int count_previous_redir(char *str, int i)
+static int	count_previous_redir(char *str, int i)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (i >= 0)
@@ -33,7 +33,7 @@ static int count_previous_redir(char *str, int i)
 		if (str[i] == '>' || str[i] == '<')
 			count++;
 		if (ft_iswhitespace(str[i]) == 0 && str[i] != '>' && str[i] != '<')
-			break;
+			break ;
 		i--;
 	}
 	return (count);
@@ -66,5 +66,3 @@ int	invalid_redirections(char *str)
 		return (return_error(last_redirect));
 	return (0);
 }
-
-

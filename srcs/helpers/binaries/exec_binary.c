@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_binary.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:03 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/09 20:57:55 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/11 14:31:00 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*search_path_for_command(char *command)
 {
-	char **paths;
+	char	**paths;
 	char	*path;
 	char	*temp;
 	int		i;
@@ -27,11 +27,11 @@ static char	*search_path_for_command(char *command)
 		path = ft_strjoin(temp, command);
 		free(temp);
 		if (access(path, X_OK) == 0)
-			break;
+			break ;
 		free(path);
 		path = NULL;
 		if (errno != ENOENT)
-			break;
+			break ;
 		i++;
 	}
 	ft_memdel_2d((void **)paths);
@@ -39,7 +39,7 @@ static char	*search_path_for_command(char *command)
 }
 
 static void	handle_command_not_found(char **args,
-		t_cmd_line ***cmd_line)
+										t_cmd_line ***cmd_line)
 {
 	char	*command;
 

@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:48:53 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/09 17:11:23 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/11 14:32:58 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	read_command_line(char **line)
 {
 	if (line == NULL)
-		return ;	
+		return ;
 	*line = readline("minishell ▸ ");
 	if (*line == NULL)
 	{
@@ -28,6 +28,5 @@ void	read_command_line(char **line)
 		add_history(*line);
 		signal(SIGQUIT, sigquit_handler);
 	}
-		
 	return ;
 }

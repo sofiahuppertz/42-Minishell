@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:08 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/09 19:46:05 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/11 14:31:29 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ft_execve(char *path, char **args, char **dirs)
 		ft_putstr_fd(": ", 2);
 		ft_putstr_fd(strerror(errno), 2);
 		ft_putstr_fd("\n", 2);
-		// 
 		ft_memdel_2d((void **)args);
 		ft_memdel((void *)path);
 		exit(ERROR);

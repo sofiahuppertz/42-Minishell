@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:46:57 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/09 17:59:12 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/11 14:48:13 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	print_error_type(void)
 {
-	if (errno == ENOENT || errno == ENOTDIR)
-		ft_putendl_fd(": command not found", STDERR);
-	else if (errno == EACCES)
+	if (errno == EACCES)
 		ft_putendl_fd(": Permission denied", STDERR);
 	else if (errno == EISDIR)
 		ft_putendl_fd(": is a directory", STDERR);
+	else
+		ft_putendl_fd(": command not found", STDERR);
 	return ;
 }
 
