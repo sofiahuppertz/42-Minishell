@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:46:41 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/11 14:30:41 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/11 17:37:03 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,19 @@ static void	handle_multiple_commands(int num_cmds, pid_t *pid,
 int	dispatcher(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
 {
 	t_cmd_line	*simple_cmd;
+	int			*status;
 
 	simple_cmd = *cmd_line;
-	while (simple_cmd)
-	{
-		redir(&simple_cmd);
-		simple_cmd = simple_cmd->next;
-	}
+	status = status_pointer();
 	if (!*stop_exec())
 	{
 		simple_cmd = *cmd_line;
 		if (num_cmds == 1 && is_builtin(simple_cmd->argv[0]))
-			*status_pointer() = exec_builtin((const char **)(*cmd_line)->argv,
-												(*cmd_line)->fd_out,
-												0);
+		{
+			redir(&simple_cmd);
+			*status = exec_builtin((const char **)(*cmd_line)->argv,
+					(*cmd_line)->fd_out, 0);
+		}
 		else
 			handle_multiple_commands(num_cmds, pid, &cmd_line, &simple_cmd);
 	}

@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:46:57 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/11 14:48:13 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:58:07 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,10 @@ void	access_failure(char *command)
 	{
 		ft_putstr_fd(command, STDERR);
 		print_error_type();
-		if (errno == ENOENT || errno == ENOTDIR)
-			*status_pointer() = 127;
-		else if (errno == EACCES || errno == EISDIR)
+		if (errno == EACCES || errno == EISDIR)
 			*status_pointer() = 126;
 		else
-			*status_pointer() = 1;
+			*status_pointer() = 127;
 		free(command);
 	}
 	exit(*status_pointer());
