@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_get_var.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:49:36 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 15:41:25 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 21:49:54 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*envp_get_var(const char *var)
 	char	*result;
 
 	len = ft_strrchr(var, '=') - var + 1;
+	if (len < 1 || len == (int)ft_strlen(var))
+		return (ft_strdup((var)));
 	result = ft_substr(var, 0, len);
 	return (result);
 }

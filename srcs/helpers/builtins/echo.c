@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:20 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 12:37:32 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 21:54:29 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	handle_n_option(const char **args, size_t *idx)
 		n_idx = 1;
 		while (args[*idx][n_idx] == 'n')
 			n_idx++;
-		if (args[*idx][n_idx] == '\0')
+		if (args[*idx][n_idx] == '\0' && n_idx > 1)
 			n_option = 1;
 		else
 			break ;

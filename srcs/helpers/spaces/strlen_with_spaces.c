@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strlen_with_spaces.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:55:07 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:55:10 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:05:44 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	strlen_with_spaces(char *str)
 	{
 		if (is_delim(str, index))
 			new_str_len += 2;
+		else if (str[index] == '$' && str[index + 1] == '\'')
+			new_str_len -= 1;
 		new_str_len++;
 		index++;
 	}
