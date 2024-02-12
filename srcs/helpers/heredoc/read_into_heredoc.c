@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_into_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:23 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/07 19:29:08 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/12 13:33:47 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	read_into_heredoc(int fd, char *limitor)
 		if (ft_strcmp(limitor, here_line) == 0)
 			break ;
 		if (here_line[0] != '\0')
-			realloc_str_and_expansions(&here_line, envp);
+			expand_cmd(&here_line, envp);
 		ft_putendl_fd(here_line, fd);
 		ft_memdel((void *)here_line);
 	}

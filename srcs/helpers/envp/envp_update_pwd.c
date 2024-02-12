@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:23:25 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 12:46:09 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:48:31 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	update_oldpwd(char *temp_val, t_env ***env)
 
 	yes = envp_is_value_in_env("OLDPWD");
 	if (yes)
-		envp_modify_var(temp_val, "OLDPWD=", *env);
+		e_modify_var(temp_val, "OLDPWD=", *env);
 	else
 	{
 		temp = ft_strjoin("OLDPWD=", temp_val);
@@ -36,12 +36,12 @@ void	envp_update_pwd(char *curr_dir)
 	t_env	**env;
 
 	env = get_adress_envp();
-	temp_val = envp_get_value("PWD", *env);
+	temp_val = e_get_val("PWD", *env);
 	update_oldpwd(temp_val, &env);
 	free(temp_val);
 	yes = envp_is_value_in_env("PWD");
 	if (yes)
-		envp_modify_var(curr_dir, "PWD=", env);
+		e_modify_var(curr_dir, "PWD=", env);
 	else
 	{
 		temp = ft_strjoin("PWD=", curr_dir);

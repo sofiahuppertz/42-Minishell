@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   envp_modify_var.c                                  :+:      :+:    :+:   */
+/*   e_modify_var.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:49:58 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 12:36:25 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:39:11 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,29 @@ static int	modify_current_var(t_env *current, const char *var_name,
 	return (-42);
 }
 
-int	envp_modify_var(const char *new_value, const char *var_name, t_env **env)
+int	e_modify_var(const char *new, const char *name, t_env **e)
 {
 	t_env	*current;
 	int		alloc_d;
 	int		result;
 
-	current = *env;
+	current = *e;
 	alloc_d = 0;
-	if (!var_name)
+	if (!name)
 		return (-42);
-	if (!new_value)
+	if (!new)
 	{
-		new_value = ft_strdup("");
+		new = ft_strdup("");
 		alloc_d = 1;
 	}
 	while (current)
 	{
-		result = modify_current_var(current, var_name, new_value);
+		result = modify_current_var(current, name, new);
 		if (result != -42)
 			return (result);
 		current = current->next;
 	}
 	if (alloc_d)
-		ft_memdel((void *)new_value);
+		ft_memdel((void *)new);
 	return (-42);
 }

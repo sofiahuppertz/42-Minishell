@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:50:45 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:50:50 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:33:47 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	expansions(t_cmd_line **cmd_line)
 		while (token)
 		{
 			if (token->type == ARG || token->type == LIMIT)
-				realloc_str_and_expansions(&(token->str), *get_adress_envp());
+				expand_cmd(&(token->str), *get_adress_envp());
 			token = token->next;
 		}
 		simple_cmd = simple_cmd->next;

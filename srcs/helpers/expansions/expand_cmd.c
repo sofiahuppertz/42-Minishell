@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   realloc_str_and_expansions.c                       :+:      :+:    :+:   */
+/*   expand_cmd.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -26,12 +26,12 @@ static void	handle_expansion_in_realloc(t_expansion *x, char **arg, t_env *envp)
 	}
 }
 
-void	realloc_str_and_expansions(char **arg, t_env *envp)
+void	expand_cmd(char **arg, t_env *envp)
 {
 	t_expansion	x;
 	int			new_len;
 
-	new_len = strlen_with_expansions((const char *)*arg, envp);
+	new_len = len_w_exp((const char *)*arg, envp);
 	x.value = ft_calloc(sizeof(char), new_len + 1);
 	if (!x.value)
 		exit_failure();

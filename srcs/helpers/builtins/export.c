@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:52 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 12:43:09 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:40:07 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	handle_arg(const char *arg, t_env **env, int status)
 	if (name && value_in_env)
 	{
 		value = get_value(arg, status);
-		status = envp_modify_var(value, name, env);
+		status = e_modify_var(value, name, env);
 		ft_memdel(value);
 	}
 	else if (name)

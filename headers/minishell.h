@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/11 14:29:25 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:52:41 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,30 +94,19 @@ typedef struct s_env
 }								t_env;
 
 int								add_spaces_to_delims(char **str);
-int	break_simple_cmds(char *line,
-						t_cmd_line **simple_cmd_list);
 int								cd(const char **args, t_env **env);
 int								cmd_count(t_cmd_line *cmd_line);
-int	create_heredoc(t_cmd_line **simple_cmd,
-					t_token **token);
 int								create_pipes(t_cmd_line **cmd_line);
 int								dispatcher(t_cmd_line **cmd_line, pid_t *pid,
 									int num_cmds);
 int								duplicate_pipes(char *str);
 int								echo(const char **args, int fd);
 int								env(t_env *env, int fd);
-int	envp_add_var(const char *new_variable,
-					t_env **env);
 int								envp_count(t_env *env);
 int								envp_is_valid_varname(const char *varname);
 int								envp_is_value_assigned(const char *str);
 int								envp_is_value_in_env(const char *value);
-int	envp_modify_var(const char *new_value,
-					const char *var_name,
-					t_env **env);
 void							envp_print_sorted_env(t_env *env, int fd);
-int	envp_remove_var(const char *var_name,
-					t_env **env);
 int								execution(t_cmd_line **full_cmd);
 int								exec_builtin(const char **cmd_lst, int fd,
 									int child);
@@ -143,21 +132,13 @@ int								pwd(int fd);
 int								quotes_are_closed(char *line);
 int								read_into_heredoc(int fd, char *limitor);
 int								redir(t_cmd_line **simple_cmd);
-int	redirect_heredoc(t_cmd_line **simple_cmd,
-						t_token *token);
-int	redirect_stdin(t_cmd_line **simple_cmd,
-					t_token *token);
-int	redirect_stdout(t_cmd_line **cmdl,
-					t_token *token,
-					short int flag);
 int								set_file_types(t_cmd_line **full_cmd);
 int								set_heredoc_limit(t_cmd_line **full_cmd);
 int								strcpy_expanded_var(t_expansion *x, char *arg,
 									t_env *env);
 int								strlen_expanded_var(const char *arg, int idx,
 									t_env *env);
-int	strlen_with_expansions(const char *arg,
-							t_env *env);
+
 int								strlen_with_spaces(char *str);
 int								syntax_ok(char *str);
 int								tokenize(t_cmd_line **cmd_list);
@@ -166,22 +147,15 @@ int								unset(const char **args);
 int								wait_pid(t_cmd_line **cmd_line, pid_t *pid,
 									int num_cmds);
 
-char	*envp_get_value(const char *var_name,
-						t_env *env);
 char							*envp_get_var(const char *var);
 char							**envp_sort(t_env *env);
-
 void							access_failure(char *command);
 void							add_cmd_to_list(char *str, int cur, int start,
 									t_cmd_line **head);
 void							close_fds(t_cmd_line **cmd_line);
-void	cmd_list_add_back(t_cmd_line **head,
-						t_cmd_line *last);
-void	count_args_in_cmd(t_cmd_line *simple_cmd,
-						int *len);
 void							cpy_args_in_cmd(t_cmd_line *simple_cmd);
 void							delete_cmd_line(t_cmd_line **cmd_line);
-void							delete_cmd_line_except_argv(t_cmd_line **cmd_line);
+void							dlt_cmdline_but_argv(t_cmd_line **cmd_line);
 void							delete_envp(void);
 void							delete_pipe_fds(int **fds);
 void							delete_tokens(t_token *head);
@@ -191,8 +165,6 @@ void							init_shell_level(void);
 void							init_type(t_token *new);
 void							organize_redirections(t_cmd_line **full_cmd);
 void							read_command_line(char **line);
-void	realloc_str_and_expansions(char **arg,
-								t_env *envp);
 void							run_shell(void);
 void							sigint_handler(int code);
 void							sigquit_handler(int code);
@@ -209,6 +181,22 @@ t_env							**get_adress_envp(void);
 t_token							*create_node(int str_len);
 t_token							*get_next_token(char *str, int *idx);
 char							***get_adress_char_envp(void);
+
+int								break_cmds(char *line, t_cmd_line **list);
+int								create_heredoc(t_cmd_line **s_cmd, t_token **t);
+int								envp_add_var(const char *new, t_env **env);
+int								e_modify_var(const char *new, const char *name,
+									t_env **e);
+int								remove_var(const char *var_name, t_env **env);
+int								redir_heredoc(t_cmd_line **s_cmd, t_token *t);
+int								r_stdin(t_cmd_line **s_cmd, t_token *t);
+int								r_stdout(t_cmd_line **cmdl, t_token *t,
+									short int f);
+int								len_w_exp(const char *arg, t_env *env);
+char							*e_get_val(const char *var_name, t_env *env);
+void							cmdl_add(t_cmd_line **head, t_cmd_line *last);
+void							cmd_args_count(t_cmd_line *s_cmd, int *len);
+void							expand_cmd(char **arg, t_env *envp);
 
 extern volatile sig_atomic_t	g_caught_signal;
 

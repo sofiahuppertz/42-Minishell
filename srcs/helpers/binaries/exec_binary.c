@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:03 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/11 14:31:00 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:27:46 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ static char	*search_path_for_command(char *command)
 	char	*temp;
 	int		i;
 
-	i = 0;
-	paths = ft_split(getenv("PATH"), ':');
-	while (paths[i])
+	i = -1;
+	temp = e_get_val("PATH", *get_adress_envp());
+	if (!temp)
+		return (NULL);
+	paths = ft_split(temp, ':');
+	ft_memdel((void *)temp);
+	while (paths[++i])
 	{
 		temp = ft_strjoin(paths[i], "/");
 		path = ft_strjoin(temp, command);
@@ -32,7 +36,6 @@ static char	*search_path_for_command(char *command)
 		path = NULL;
 		if (errno != ENOENT)
 			break ;
-		i++;
 	}
 	ft_memdel_2d((void **)paths);
 	return (path);
@@ -46,6 +49,7 @@ static void	handle_command_not_found(char **args,
 	command = NULL;
 	if (args[0])
 		command = ft_strdup(args[0]);
+	delete_envp();
 	delete_cmd_line(*cmd_line);
 	access_failure(command);
 }
@@ -55,12 +59,12 @@ int	exec_binary(char **args, t_cmd_line **cmd_line)
 	char	*path;
 	char	**env;
 
-	delete_envp();
 	env = *get_adress_char_envp();
 	if (!args[0])
 		handle_command_not_found(args, &cmd_line);
 	else if (access(args[0], X_OK) == 0)
 	{
+		delete_envp();
 		ft_execve(args[0], args, env);
 	}
 	else
@@ -68,7 +72,7 @@ int	exec_binary(char **args, t_cmd_line **cmd_line)
 		path = search_path_for_command(args[0]);
 		if (path != NULL)
 		{
-			delete_cmd_line_except_argv(cmd_line);
+			dlt_cmdline_but_argv(cmd_line);
 			ft_execve(path, args, env);
 		}
 		else

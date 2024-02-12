@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strcpy_expanded_var.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:51:04 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/07 19:05:35 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/12 13:48:31 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*get_expanded_var(char *arg, int idx, t_env *env)
 		i++;
 	}
 	var_name[i] = '\0';
-	var_value = envp_get_value(var_name, env);
+	var_value = e_get_val(var_name, env);
 	return (var_value);
 }
 

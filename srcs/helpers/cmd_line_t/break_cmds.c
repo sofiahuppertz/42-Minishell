@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_stdout.c                                  :+:      :+:    :+:   */
+/*   break_cmds.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:54:13 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/11 17:34:00 by shuppert         ###   ########.fr       */
+/*   Created: 2023/11/27 18:48:32 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 19:00:36 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int	redirect_stdout(t_cmd_line **cmdl, t_token *token, short int flag)
+int	break_cmds(char *line, t_cmd_line **list)
 {
-	if ((*cmdl)->fd_out != 1)
-		close((*cmdl)->fd_out);
-	(*cmdl)->fd_out = open(token->str, O_CREAT | O_RDWR | flag, 0644);
-	if ((*cmdl)->fd_out == -1)
+	int	idx;
+	int	cmd_start;
+
+	idx = 0;
+	cmd_start = 0;
+	while (line[idx])
 	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(token->str, 2);
-		ft_putendl_fd(": Permission denied", 2);
-		*status_pointer() = 1;
-		*stop_exec() = 1;
-		return (1);
+		if (idx != 0)
+		{
+			idx++;
+			cmd_start++;
+		}
+		strlen_simple_cmd(line, &idx);
+		add_cmd_to_list(line, idx, cmd_start, list);
+		cmd_start = idx;
+		if (idx == 0)
+		{
+			idx++;
+			cmd_start++;
+		}
 	}
 	return (0);
 }

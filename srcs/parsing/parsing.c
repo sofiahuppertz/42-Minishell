@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:56:09 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/09 18:08:40 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:35:22 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	parsing(char **str, t_cmd_line **cmd_line)
 			return (0);
 		}
 		add_spaces_to_delims(str);
-		break_simple_cmds(*str, cmd_line);
+		break_cmds(*str, cmd_line);
 		if (!(*cmd_line) || !tokenize(cmd_line))
 			return (0);
 		organize_redirections(cmd_line);

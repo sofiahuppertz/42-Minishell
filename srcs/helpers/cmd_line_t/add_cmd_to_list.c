@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:48:27 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 12:27:32 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:50:28 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void	add_cmd_to_list(char *str, int cur, int start, t_cmd_line **head)
 	if (new->string == NULL)
 		return (exit_failure());
 	new->string = ft_strncpy(new->string, str + start, cur - start);
-	cmd_list_add_back(head, new);
+	cmdl_add(head, new);
 	return ;
 }

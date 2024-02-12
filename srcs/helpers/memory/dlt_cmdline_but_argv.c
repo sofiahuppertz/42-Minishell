@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   envp_get_value.c                                   :+:      :+:    :+:   */
+/*   dlt_cmdline_but_argv.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:49:28 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:49:29 by shuppert         ###   ########.fr       */
+/*   Created: 2023/11/28 13:40:53 by shuppert          #+#    #+#             */
+/*   Updated: 2024/02/11 14:32:29 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-char	*envp_get_value(const char *var_name, t_env *env)
+void	dlt_cmdline_but_argv(t_cmd_line **cmd_line)
 {
-	t_env	*current;
-	char	*str;
-	size_t	len;
+	t_cmd_line	*temp;
 
-	current = env;
-	len = ft_strlen(var_name);
-	while (current)
+	if (cmd_line)
 	{
-		if (ft_strncmp(current->str, var_name, len) == 0)
+		while (*cmd_line)
 		{
-			str = current->str;
-			while (*str != '=')
-				str++;
-			if (*(str + 1) == '\0')
-				return (ft_strdup(""));
-			return (ft_strdup(str + 1));
+			temp = (*cmd_line)->next;
+			if ((*cmd_line)->string)
+				ft_memdel((void *)(*cmd_line)->string);
+			if ((*cmd_line)->first_token)
+				delete_tokens((*cmd_line)->first_token);
+			if ((*cmd_line)->name_file)
+				ft_memdel((*cmd_line)->name_file);
+			ft_memdel((*cmd_line));
+			*cmd_line = temp;
 		}
-		current = current->next;
 	}
-	return (NULL);
+	return ;
 }

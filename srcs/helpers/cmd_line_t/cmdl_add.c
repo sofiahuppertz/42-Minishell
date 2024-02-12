@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_stdin.c                                   :+:      :+:    :+:   */
+/*   cmdl_add.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:54:07 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/11 17:34:01 by shuppert         ###   ########.fr       */
+/*   Created: 2023/11/27 18:48:42 by shuppert          #+#    #+#             */
+/*   Updated: 2023/11/27 19:00:42 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int	redirect_stdin(t_cmd_line **simple_cmd, t_token *token)
+void	cmdl_add(t_cmd_line **head, t_cmd_line *last)
 {
-	if ((*simple_cmd)->fd_in != 0)
-		close((*simple_cmd)->fd_in);
-	(*simple_cmd)->fd_in = open(token->str, O_RDONLY);
-	if ((*simple_cmd)->fd_in == -1)
+	t_cmd_line	*cur;
+
+	cur = *head;
+	if (cur == NULL)
+		*head = last;
+	else
 	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(token->str, 2);
-		ft_putendl_fd(": No such file or directory", 2);
-		*status_pointer() = 1;
-		*stop_exec() = 1;
-		return (-1);
+		while (cur->next)
+			cur = cur->next;
+		cur->next = last;
 	}
-	return (0);
 }

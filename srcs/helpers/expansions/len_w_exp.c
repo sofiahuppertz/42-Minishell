@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlen_with_expansions.c                           :+:      :+:    :+:   */
+/*   len_w_exp.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -28,7 +28,7 @@ static void	handle_expansion(const char *arg, int *idx, int *len, t_env *env)
 		(*len)--;
 }
 
-int	strlen_with_expansions(const char *arg, t_env *env)
+int	len_w_exp(const char *arg, t_env *env)
 {
 	int	len;
 	int	idx;

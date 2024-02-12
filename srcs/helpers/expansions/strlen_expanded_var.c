@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strlen_expanded_var.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:51:12 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/07 19:05:35 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/12 13:48:31 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	extract_var_and_len(const char *arg, int *idx, t_env *env)
 			|| arg[*idx] == '_'))
 		varname[len++] = arg[(*idx)++];
 	varname[len] = '\0';
-	buffer = envp_get_value((const char *)varname, env);
+	buffer = e_get_val((const char *)varname, env);
 	if (!buffer)
 		len = 0;
 	else

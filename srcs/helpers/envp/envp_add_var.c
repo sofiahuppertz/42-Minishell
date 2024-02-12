@@ -6,13 +6,13 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:49:08 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/11 14:32:33 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:37:11 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int	envp_add_var(const char *new_variable, t_env **env)
+int	envp_add_var(const char *new, t_env **env)
 {
 	t_env	*new_node;
 	t_env	*current;
@@ -20,7 +20,7 @@ int	envp_add_var(const char *new_variable, t_env **env)
 	new_node = ft_calloc(sizeof(t_env), 1);
 	if (!env || !new_node)
 		return (-1);
-	new_node->str = ft_strdup(new_variable);
+	new_node->str = ft_strdup(new);
 	if (!new_node->str)
 		return (ERROR);
 	new_node->next = NULL;

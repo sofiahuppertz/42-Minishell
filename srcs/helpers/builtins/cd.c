@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:15 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 12:37:03 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:48:31 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	cd_home(t_env **env)
 	int		exit_status;
 	char	curr_dir[PATH_MAX + 1];
 
-	home_path = envp_get_value("HOME", *env);
+	home_path = e_get_val("HOME", *env);
 	if (!home_path)
 	{
 		ft_putendl_fd("minishell : cd: HOME not set", STDERR);
@@ -50,7 +50,7 @@ static int	cd_prev_dir(t_env **env)
 	int		exit_status;
 	char	curr_dir[PATH_MAX + 1];
 
-	prev_path = envp_get_value("OLDPWD", *env);
+	prev_path = e_get_val("OLDPWD", *env);
 	if (!prev_path)
 	{
 		ft_putendl_fd("minishell : cd: OLDPWD not set", STDERR);

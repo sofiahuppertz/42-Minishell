@@ -6,17 +6,17 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:06 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/11 17:40:05 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:17:53 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static void	close_input_output(t_cmd_line **simple_cmd)
+static void	close_i_o(t_cmd_line **simple_cmd)
 {
-	if ((*simple_cmd)->fd_in != 0)
+	if ((*simple_cmd)->fd_in != 0 && (*simple_cmd)->fd_in != -1)
 		close((*simple_cmd)->fd_in);
-	if ((*simple_cmd)->fd_out != 1)
+	if ((*simple_cmd)->fd_out != 1 && (*simple_cmd)->fd_out != -1)
 		close((*simple_cmd)->fd_out);
 	return ;
 }
@@ -34,6 +34,21 @@ static void	handle_builtin(t_cmd_line **simple_cmd, t_cmd_line **cmd_line)
 	exit(*status_pointer());
 }
 
+static void	exec_command(t_cmd_line **cmd_line, t_cmd_line **simple_cmd)
+{
+	dup2((*simple_cmd)->fd_in, STDIN_FILENO);
+	dup2((*simple_cmd)->fd_out, STDOUT_FILENO);
+	close_fds(cmd_line);
+	if ((*simple_cmd)->argv)
+	{
+		if (is_builtin((*simple_cmd)->argv[0]))
+			handle_builtin(simple_cmd, cmd_line);
+		else
+			exec_binary((*simple_cmd)->argv, cmd_line);
+	}
+	return ;
+}
+
 int	fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line,
 		t_cmd_line **simple_cmd)
 {
@@ -42,25 +57,18 @@ int	fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line,
 		exit(1);
 	if (pid[idx] == 0)
 	{
+		redir(simple_cmd);
 		rl_clear_history();
 		ft_memdel((void *)pid);
-		redir(simple_cmd);
 		if (!(*stop_exec()))
-		{
-			dup2((*simple_cmd)->fd_in, STDIN_FILENO);
-			dup2((*simple_cmd)->fd_out, STDOUT_FILENO);
-			close_fds(cmd_line);
-			if ((*simple_cmd)->argv)
-			{
-				if (is_builtin((*simple_cmd)->argv[0]))
-					handle_builtin(simple_cmd, cmd_line);
-				else
-					exec_binary((*simple_cmd)->argv, cmd_line);
-			}
-		}
+			exec_command(cmd_line, simple_cmd);
 		else
+		{
+			delete_envp();
+			delete_cmd_line(cmd_line);
 			exit(1);
+		}
 	}
-	close_input_output(simple_cmd);
+	close_i_o(simple_cmd);
 	return (0);
 }

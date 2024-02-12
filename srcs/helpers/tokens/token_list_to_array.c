@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:55:51 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:55:54 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:51:50 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	token_list_to_array(t_cmd_line **cmds)
 	simple_cmd = *cmds;
 	while (simple_cmd)
 	{
-		count_args_in_cmd(simple_cmd, &cmd_count);
+		cmd_args_count(simple_cmd, &cmd_count);
 		new = malloc(sizeof(char *) * (cmd_count + 1));
 		if (!new)
 			exit_failure();

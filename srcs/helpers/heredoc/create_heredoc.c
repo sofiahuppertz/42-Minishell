@@ -6,13 +6,13 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:18 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:52:19 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:38:39 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int	create_heredoc(t_cmd_line **simple_cmd, t_token **token)
+int	create_heredoc(t_cmd_line **s_cmd, t_token **t)
 {
 	int		fd;
 	char	*name_file;
@@ -24,15 +24,15 @@ int	create_heredoc(t_cmd_line **simple_cmd, t_token **token)
 		perror("Error creating heredoc");
 		return (-1);
 	}
-	read_into_heredoc(fd, (*token)->str);
+	read_into_heredoc(fd, (*t)->str);
 	close(fd);
 	fd = open(name_file, O_RDONLY);
-	(*simple_cmd)->fd_in = fd;
-	if ((*simple_cmd)->name_file != NULL)
+	(*s_cmd)->fd_in = fd;
+	if ((*s_cmd)->name_file != NULL)
 	{
-		unlink((*simple_cmd)->name_file);
-		ft_memdel((void *)(*simple_cmd)->name_file);
+		unlink((*s_cmd)->name_file);
+		ft_memdel((void *)(*s_cmd)->name_file);
 	}
-	(*simple_cmd)->name_file = strdup(name_file);
+	(*s_cmd)->name_file = strdup(name_file);
 	return (fd);
 }

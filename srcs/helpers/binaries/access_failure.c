@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:46:57 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/11 15:58:07 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:56:55 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,9 @@ static void	print_error_type(void)
 
 void	access_failure(char *command)
 {
-	ft_putstr_fd("minishell: ", STDERR);
-	if (!command)
+	if (command)
 	{
-		ft_putendl_fd(": command not found", STDERR);
-		*status_pointer() = 127;
-	}
-	else
-	{
+		ft_putstr_fd("minishell: ", STDERR);
 		ft_putstr_fd(command, STDERR);
 		print_error_type();
 		if (errno == EACCES || errno == EISDIR)

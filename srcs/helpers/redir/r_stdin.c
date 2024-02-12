@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_args_in_cmd.c                                :+:      :+:    :+:   */
+/*   r_stdin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:55:16 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/27 18:55:19 by shuppert         ###   ########.fr       */
+/*   Created: 2023/11/27 18:54:07 by shuppert          #+#    #+#             */
+/*   Updated: 2024/02/12 13:15:03 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-void	count_args_in_cmd(t_cmd_line *simple_cmd, int *len)
+int	r_stdin(t_cmd_line **s_cmd, t_token *t)
 {
-	t_token	*token;
-
-	*len = 0;
-	token = simple_cmd->first_token;
-	while (token)
+	if ((*s_cmd)->fd_in != 0 && (*s_cmd)->fd_in != -1)
+		close((*s_cmd)->fd_in);
+	(*s_cmd)->fd_in = open(t->str, O_RDONLY);
+	if ((*s_cmd)->fd_in == -1)
 	{
-		if (token->type == ARG || token->type == BUILTIN)
-			*len += 1;
-		token = token->next;
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(t->str, 2);
+		ft_putendl_fd(": No such file or directory", 2);
+		*status_pointer() = 1;
+		*stop_exec() = 1;
+		return (-1);
 	}
-	return ;
+	return (0);
 }

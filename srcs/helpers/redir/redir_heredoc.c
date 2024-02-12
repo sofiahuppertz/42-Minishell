@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_heredoc.c                                 :+:      :+:    :+:   */
+/*   redir_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:53:58 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/07 19:14:16 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/12 13:15:07 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int	redirect_heredoc(t_cmd_line **simple_cmd, t_token *token)
+int	redir_heredoc(t_cmd_line **s_cmd, t_token *t)
 {
-	if ((*simple_cmd)->fd_in != 0)
-		close((*simple_cmd)->fd_in);
-	(*simple_cmd)->fd_in = create_heredoc(simple_cmd, &token);
-	if ((*simple_cmd)->fd_in == -1)
+	if ((*s_cmd)->fd_in != 0 && (*s_cmd)->fd_in != -1)
+		close((*s_cmd)->fd_in);
+	(*s_cmd)->fd_in = create_heredoc(s_cmd, &t);
+	if ((*s_cmd)->fd_in == -1)
 	{
 		ft_putstr_fd("minishell: Error creating heredoc", 2);
 		*stop_exec() = 1;
