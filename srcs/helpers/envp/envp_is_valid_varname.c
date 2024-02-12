@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:49:41 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/12 21:49:08 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/12 22:35:36 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ int	envp_is_valid_varname(const char *varname)
 		return (3);
 	return (1);
 }
-
