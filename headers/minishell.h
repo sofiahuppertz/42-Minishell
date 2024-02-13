@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/13 21:35:10 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/13 21:51:04 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void							dlt_cmdline_but_argv(t_cmd_line **cmd_line);
 void							delete_envp(void);
 void							delete_pipe_fds(int **fds);
 void							delete_tokens(t_token *head);
-void							envp_update_pwd(char *curr_dir);
+void							envp_update_pwd(char *curr_dir, char *old_dir);
 void							expansions(t_cmd_line **cmd_line);
 void							init_shell_level(void);
 void							init_type(t_token *new);

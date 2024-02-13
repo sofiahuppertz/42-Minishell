@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:15 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/13 21:29:18 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/13 21:55:46 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	print_error(const char **args)
 	ft_putendl_fd((char *)args[1], 2);
 }
 
-static int	cd_home(t_env **env)
+static int	cd_home(t_env **env, char *old_dir)
 {
 	char	*home_path;
 	int		exit_status;
@@ -39,12 +39,12 @@ static int	cd_home(t_env **env)
 	}
 	exit_status = chdir(home_path);
 	getcwd(curr_dir, PATH_MAX);
-	envp_update_pwd(curr_dir);
+	envp_update_pwd(curr_dir, old_dir);
 	free(home_path);
 	return (exit_status);
 }
 
-static int	cd_prev_dir(t_env **env)
+static int	cd_prev_dir(t_env **env, char *old_dir)
 {
 	char	*prev_path;
 	int		exit_status;
@@ -58,7 +58,7 @@ static int	cd_prev_dir(t_env **env)
 	}
 	exit_status = chdir(prev_path);
 	getcwd(curr_dir, PATH_MAX);
-	envp_update_pwd(curr_dir);
+	envp_update_pwd(curr_dir, old_dir);
 	free(prev_path);
 	return (exit_status);
 }
@@ -67,16 +67,18 @@ int	cd(const char **args, t_env **env)
 {
 	int		exit_status;
 	char	curr_dir[PATH_MAX + 1];
+	char	old_dir[PATH_MAX + 1];
 
+	getcwd(old_dir, PATH_MAX);
 	if (!args[1])
-		exit_status = cd_home(env);
+		exit_status = cd_home(env, old_dir);
 	else if (ft_strcmp(args[1], "-") == 0)
-		exit_status = cd_prev_dir(env);
+		exit_status = cd_prev_dir(env, old_dir);
 	else
 	{
 		exit_status = chdir(args[1]);
 		getcwd(curr_dir, PATH_MAX);
-		envp_update_pwd(curr_dir);
+		envp_update_pwd(curr_dir, old_dir);
 		if (exit_status != 0)
 		{
 			print_error(args);
