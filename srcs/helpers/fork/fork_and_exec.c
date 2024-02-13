@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork_and_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:06 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/13 18:24:53 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:28:12 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	handle_builtin(t_cmd_line **simple_cmd, t_cmd_line **cmd_line)
 	status = status_pointer();
 	args = (const char **)(*simple_cmd)->argv;
 	*status = exec_builtin(args, (*simple_cmd)->fd_out, 1);
+	close_fds(cmd_line);
 	delete_cmd_line(cmd_line);
 	delete_envp();
 	exit(*status_pointer());
@@ -38,13 +39,15 @@ static void	exec_command(t_cmd_line **cmd_line, t_cmd_line **simple_cmd)
 {
 	dup2((*simple_cmd)->fd_in, STDIN_FILENO);
 	dup2((*simple_cmd)->fd_out, STDOUT_FILENO);
-	close_fds(cmd_line);
 	if ((*simple_cmd)->argv)
 	{
 		if (is_builtin((*simple_cmd)->argv[0]))
 			handle_builtin(simple_cmd, cmd_line);
 		else
+		{
+			close_fds(cmd_line);
 			exec_binary((*simple_cmd)->argv, cmd_line);
+		}
 	}
 	return ;
 }
@@ -58,7 +61,7 @@ int	fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line,
 	if (pid[idx] == 0)
 	{
 		redir(simple_cmd);
-		rl_clear_history();
+		//rl_clear_history();
 		ft_memdel((void *)pid);
 		if (!(*stop_exec()))
 			exec_command(cmd_line, simple_cmd);

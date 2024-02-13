@@ -9,7 +9,12 @@
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
-            "environment": [],
+            "environment": [
+                {
+                    "name": "env",
+                    "value": "-i"
+                }
+            ],
             "externalConsole": true,
             "MIMode": "lldb"
         }

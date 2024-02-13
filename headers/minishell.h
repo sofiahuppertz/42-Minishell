@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:44:20 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/12 13:52:41 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:35:10 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void							init_shell_level(void);
 void							init_type(t_token *new);
 void							organize_redirections(t_cmd_line **full_cmd);
 void							read_command_line(char **line);
-void							run_shell(void);
+void							run_shell();
 void							sigint_handler(int code);
 void							sigquit_handler(int code);
 void							strcpy_adding_spaces(char **new, char *str);
