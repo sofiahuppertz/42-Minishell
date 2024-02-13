@@ -22,7 +22,8 @@ char	*e_get_val(const char *var_name, t_env *env)
 	len = ft_strlen(var_name);
 	while (current)
 	{
-		if (ft_strncmp(current->str, var_name, len) == 0 && current->str[len] == '=')
+		if (ft_strncmp(current->str, var_name, len) == 0
+			&& current->str[len] == '=')
 		{
 			str = current->str;
 			while (*str != '=')

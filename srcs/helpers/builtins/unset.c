@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:48:11 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/12 22:33:19 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/13 17:55:01 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static void handle_unset_error(const char *var, int *stop)
+static void	handle_unset_error(const char *var, int *stop)
 {
 	*stop = 1;
 	if (!ft_isdigit(var[0]) && ft_is_all(var, ft_isalnum))
-		return;
+		return ;
 	ft_putstr_fd("minishell: unset: `", STDERR_FILENO);
 	ft_putstr_fd((char *)var, STDERR_FILENO);
 	ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
@@ -24,9 +24,9 @@ static void handle_unset_error(const char *var, int *stop)
 
 int	unset(const char **args)
 {
-	int	i;
-	int stop;
-	char *temp;
+	int		i;
+	int		stop;
+	char	*temp;
 
 	i = 1;
 	stop = 0;

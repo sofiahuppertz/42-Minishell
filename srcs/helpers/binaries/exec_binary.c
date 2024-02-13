@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:03 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/12 17:27:46 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:46:53 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	handle_command_not_found(char **args,
 		command = ft_strdup(args[0]);
 	delete_envp();
 	delete_cmd_line(*cmd_line);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
 	access_failure(command);
 }
 
@@ -65,6 +67,7 @@ int	exec_binary(char **args, t_cmd_line **cmd_line)
 	else if (access(args[0], X_OK) == 0)
 	{
 		delete_envp();
+		dlt_cmdline_but_argv(cmd_line);
 		ft_execve(args[0], args, env);
 	}
 	else
@@ -72,7 +75,6 @@ int	exec_binary(char **args, t_cmd_line **cmd_line)
 		path = search_path_for_command(args[0]);
 		if (path != NULL)
 		{
-			dlt_cmdline_but_argv(cmd_line);
 			ft_execve(path, args, env);
 		}
 		else
