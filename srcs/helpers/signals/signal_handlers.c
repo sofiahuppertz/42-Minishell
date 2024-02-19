@@ -6,7 +6,7 @@
 /*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:54:47 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/19 15:14:34 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/19 15:33:12 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	sigint_handler(int code)
 {
 	if (*cmd_in_progress() == 0)
 	{
-		ft_putstr_fd("sigint\n", 2);
 		ft_putstr_fd("\n", 2);
 		//rl_on_new_line();
 		//rl_replace_line("", 0);
