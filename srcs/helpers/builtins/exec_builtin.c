@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:38 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/13 22:22:20 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/18 17:52:17 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int	exec_builtin(const char **cmd_lst, int fd, int child)
+int	exec_builtin(const char** cmd_lst, int fd, int child)
 {
 	int	result;
 

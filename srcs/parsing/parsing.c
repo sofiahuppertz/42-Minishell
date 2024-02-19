@@ -6,11 +6,31 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:56:09 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/12 13:35:22 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:23:25 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+static void	heredoc(t_cmd_line **simple_cmd)
+{
+	t_token		*token;
+	t_cmd_line	*cmd;
+
+	cmd = *simple_cmd;
+	while (cmd)
+	{
+		token = (*simple_cmd)->first_token;
+		while (token)
+		{
+			if (token->type == LIMIT)
+				redir_heredoc(simple_cmd, token);
+			token = token->next;
+		}
+		cmd = cmd->next;
+	}
+	return ;
+}
 
 int	parsing(char **str, t_cmd_line **cmd_line)
 {
@@ -28,6 +48,7 @@ int	parsing(char **str, t_cmd_line **cmd_line)
 		organize_redirections(cmd_line);
 		expansions(cmd_line);
 		token_list_to_array(cmd_line);
+		heredoc(cmd_line);
 	}
 	return (1);
 }

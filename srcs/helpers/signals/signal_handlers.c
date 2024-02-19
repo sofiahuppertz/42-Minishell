@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handlers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:54:47 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/13 20:54:12 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/18 18:37:50 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sigint_handler(int code)
 	{
 		ft_putstr_fd("\n", 2);
 		rl_on_new_line();
-		//rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_redisplay();
 		*status_pointer() = 130;
 	}
@@ -39,5 +39,5 @@ void	sigquit_handler(int code)
 		*status_pointer() = 131;
 		g_caught_signal = code;
 	}
-	return ;
+	return;
 }

@@ -14,10 +14,12 @@
 
 int	redir_heredoc(t_cmd_line **s_cmd, t_token *t)
 {
+	int	res;
+
 	if ((*s_cmd)->fd_in != 0 && (*s_cmd)->fd_in != -1)
 		close((*s_cmd)->fd_in);
-	(*s_cmd)->fd_in = create_heredoc(s_cmd, &t);
-	if ((*s_cmd)->fd_in == -1)
+	res = create_heredoc(s_cmd, &t);
+	if (res == -1)
 	{
 		ft_putstr_fd("minishell: Error creating heredoc", 2);
 		*stop_exec() = 1;
