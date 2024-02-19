@@ -26,7 +26,10 @@ void	dlt_cmdline_but_argv(t_cmd_line **cmd_line)
 			if ((*cmd_line)->first_token)
 				delete_tokens((*cmd_line)->first_token);
 			if ((*cmd_line)->name_file)
+			{
+				unlink((*cmd_line)->name_file);
 				ft_memdel((*cmd_line)->name_file);
+			}
 			ft_memdel((*cmd_line));
 			*cmd_line = temp;
 		}

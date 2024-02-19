@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delete_cmd_line.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:40:48 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/13 18:21:27 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:51:44 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	delete_cmd_line(t_cmd_line **cmd_line)
 			if ((*cmd_line)->first_token)
 				delete_tokens((*cmd_line)->first_token);
 			if ((*cmd_line)->name_file)
+			{
+				unlink((*cmd_line)->name_file);
 				ft_memdel((*cmd_line)->name_file);
+			}
 			ft_memdel((*cmd_line));
 			*cmd_line = temp;
 		}
