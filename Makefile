@@ -52,6 +52,7 @@ HELPERS = binaries/access_failure.c \
 	fork/wait_pid.c \
 	global/cmd_in_progress.c \
 	global/exit_shell.c \
+	global/get_heredoc_flag.c \
 	global/status_pointer.c \
 	global/stop_exec.c \
 	heredoc/create_heredoc.c \

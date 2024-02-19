@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:56:09 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/19 14:49:43 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/19 19:25:25 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	heredoc(t_cmd_line **simple_cmd)
 		while (token)
 		{
 			if (token->type == LIMIT)
-				redir_heredoc(&cmd, token); 
+				redir_heredoc(&cmd, token);
 			token = token->next;
 		}
 		cmd = cmd->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_update_pwd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:23:25 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/13 21:50:40 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/19 19:27:21 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ void	envp_update_pwd(char *curr_dir, char *old_dir)
 	else
 	{
 		temp = ft_strjoin("PWD=", curr_dir);
-
 		envp_add_var(temp, env);
-
 		free(temp);
 	}
 	return ;

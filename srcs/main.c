@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:56:30 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/19 14:22:58 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/19 19:28:46 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int	main(int argc, char **argv, char **envp)
 	init_envp(envp);
 	run_shell();
 	delete_envp();
-	//rl_clear_history();
+	rl_clear_history();
 	(void)argc;
 	(void)argv;
+	close(STDIN_FILENO);
 	return (*status_pointer());
 }

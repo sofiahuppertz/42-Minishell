@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   create_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:18 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/19 14:56:52 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/19 19:33:13 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static char *generate_random_filename(void)
+static char	*generate_random_filename(void)
 {
-	int rand_num;
-	char *filename;
-	char *prefix;
-	char *random;
+	int		temp;
+	char	*res;
+	char	*prefix;
+	char	*random;
 
 	srand((unsigned)time(NULL));
-	rand_num = rand();
+	temp = rand();
 	prefix = ft_strdup(".file_");
-	random = ft_itoa(rand_num);
-	filename = ft_calloc((ft_strlen(prefix) + ft_strlen(random) + 1), sizeof(char));
-	ft_strlcpy(filename, prefix, ft_strlen(prefix) + 1);
-	ft_strlcat(filename, random, ft_strlen(random) + 1);
+	random = ft_itoa(temp);
+	temp = ft_strlen(prefix) + ft_strlen(random) + 1;
+	res = ft_calloc(temp, sizeof(char));
+	ft_strlcpy(res, prefix, ft_strlen(prefix) + 1);
+	ft_strlcat(res, random, ft_strlen(random) + 1);
 	ft_memdel((void *)prefix);
 	ft_memdel((void *)random);
-
-	return filename;
+	return (res);
 }
 
 int	create_heredoc(t_cmd_line **s_cmd, t_token **t)

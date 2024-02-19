@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_shell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:51:42 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/13 21:35:05 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/19 19:27:34 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	process_command(char **str, t_cmd_line **full_cmd)
 	delete_cmd_line(full_cmd);
 }
 
-void	run_shell()
+void	run_shell(void)
 {
 	char		*str;
 	t_cmd_line	*full_cmd;
