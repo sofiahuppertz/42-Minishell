@@ -3,33 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   read_into_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:23 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/20 08:34:43 by sofia            ###   ########.fr       */
+/*   Updated: 2024/02/20 10:15:19 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static void process_line(char **line, t_env *envp, int fd)
+static void	process_line(char **line, int fd)
 {
+	t_env	*envp;
+
+	envp = *get_adress_envp();
 	if ((*line)[0] != '\0')
 		expand_cmd(line, envp);
 	ft_putendl_fd(*line, fd);
 	ft_memdel((void *)*line);
 }
 
+static void	change_flags(void)
+{
+	if (*get_heredoc_flag() == 0)
+	{
+		*get_heredoc_flag() = 1;
+	}
+	else
+	{
+		*get_heredoc_flag() = 0;
+	}
+	if (*cmd_in_progress() == 0)
+	{
+		*cmd_in_progress() = 1;
+	}
+	else
+	{
+		*cmd_in_progress() = 0;
+	}
+}
+
 int	read_into_heredoc(int fd, char *limitor)
 {
 	char	*line;
 	int		new_fd;
-	t_env	*envp;
 
-	envp = *get_adress_envp();
 	new_fd = dup(STDIN_FILENO);
-	*get_heredoc_flag() = 1;
-	*cmd_in_progress() = 0;
+	change_flags();
 	while (1)
 	{
 		line = readline("heredoc> ");
@@ -43,10 +63,9 @@ int	read_into_heredoc(int fd, char *limitor)
 		}
 		if (ft_strcmp(limitor, line) == 0)
 			break ;
-		process_line(&line, envp, fd);
+		process_line(&line, fd);
 	}
-	*cmd_in_progress() = 1;
-	*get_heredoc_flag() = 0;
+	change_flags();
 	ft_memdel((void *)line);
 	close(new_fd);
 	return (0);
