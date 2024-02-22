@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   envp_count.c                                       :+:      :+:    :+:   */
+/*   envp_to_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:49:14 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/22 19:40:04 by shuppert         ###   ########.fr       */
+/*   Created: 2024/02/22 18:02:44 by shuppert          #+#    #+#             */
+/*   Updated: 2024/02/22 19:40:42 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int envp_count(t_env *env)
+void envp_to_char(void)
 {
-	int count;
 
-	count = 1;
-	while (env && env->next)
+	t_env *shallow_env;
+	char ***char_envp;
+	char **temp;
+	int count;
+	int idx;
+
+	shallow_env = *get_adress_envp();
+	count = envp_count(shallow_env);
+
+	delete_char_envp();
+	temp = ft_calloc(sizeof(char *), count + 1);
+	idx = 0;
+	while (shallow_env && idx < count)
 	{
-		count++;
-		env = env->next;
+		temp[idx] = ft_strdup(shallow_env->str);
+		shallow_env = shallow_env->next;
+		idx += 1;
 	}
-	return (count);
+	temp[count] = NULL;
+	char_envp = get_adress_char_envp();
+	*char_envp = temp;
+	return;
 }

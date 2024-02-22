@@ -12,9 +12,9 @@
 
 #include "../../../headers/minishell.h"
 
-void	dlt_cmdline_but_argv(t_cmd_line **cmd_line)
+void dlt_cmdline_but_argv(t_cmd_line **cmd_line)
 {
-	t_cmd_line	*temp;
+	t_cmd_line *temp;
 
 	if (cmd_line)
 	{
@@ -34,5 +34,5 @@ void	dlt_cmdline_but_argv(t_cmd_line **cmd_line)
 			*cmd_line = temp;
 		}
 	}
-	return ;
+	return;
 }

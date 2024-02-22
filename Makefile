@@ -35,6 +35,7 @@ HELPERS = binaries/access_failure.c \
 	envp/envp_is_value_in_env.c \
 	envp/e_modify_var.c \
 	envp/envp_print_sorted_env.c \
+	envp/envp_to_char.c \
 	envp/remove_var.c \
 	envp/envp_sort.c \
 	envp/get_adress_char_envp.c \
@@ -59,6 +60,7 @@ HELPERS = binaries/access_failure.c \
 	heredoc/read_into_heredoc.c \
 	memory/delete_cmd_line.c \
 	memory/dlt_cmdline_but_argv.c \
+	memory/delete_char_envp.c \
 	memory/delete_envp.c \
 	memory/delete_pipe_fds.c \
 	memory/delete_tokens.c \

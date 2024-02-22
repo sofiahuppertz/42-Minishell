@@ -12,8 +12,8 @@
 
 #include "../../../headers/minishell.h"
 
-static int	modify_current_var(t_env *current, const char *var_name,
-		const char *new_value)
+static int modify_current_var(t_env *current, const char *var_name,
+							  const char *new_value)
 {
 	if (ft_strncmp(current->str, var_name, ft_strlen(var_name)) == 0)
 	{
@@ -26,11 +26,11 @@ static int	modify_current_var(t_env *current, const char *var_name,
 	return (-42);
 }
 
-int	e_modify_var(const char *new, const char *name, t_env **e)
+int e_modify_var(const char *new, const char *name, t_env **e)
 {
-	t_env	*current;
-	int		alloc_d;
-	int		result;
+	t_env *current;
+	int alloc_d;
+	int result;
 
 	current = *e;
 	alloc_d = 0;

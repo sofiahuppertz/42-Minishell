@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   envp_count.c                                       :+:      :+:    :+:   */
+/*   delete_char_envp.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:49:14 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/22 19:40:04 by shuppert         ###   ########.fr       */
+/*   Created: 2024/02/22 18:50:19 by shuppert          #+#    #+#             */
+/*   Updated: 2024/02/22 18:55:30 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int envp_count(t_env *env)
+void delete_char_envp(void)
 {
-	int count;
+	char **temp;
 
-	count = 1;
-	while (env && env->next)
+	temp = *get_adress_char_envp();
+	if (temp != NULL)
 	{
-		count++;
-		env = env->next;
+		ft_memdel_2d((void **)temp);
 	}
-	return (count);
+	return;
 }
