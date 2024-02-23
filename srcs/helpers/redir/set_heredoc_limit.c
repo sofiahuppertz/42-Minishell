@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:54:28 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/28 11:27:17 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:49:23 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	set_heredoc_limit(t_cmd_line **full_cmd)
 	t_cmd_line	*cur_b;
 	t_token		*cur_t;
 	int			limit;
+	int			idx;
 
 	cur_b = *full_cmd;
 	limit = 0;
@@ -30,6 +31,13 @@ int	set_heredoc_limit(t_cmd_line **full_cmd)
 			else if (limit == 1 && cur_t->str && cur_t->str[0] != '\0')
 			{
 				cur_t->type = LIMIT;
+				idx = 0;
+				while (cur_t->str[idx])
+				{
+					if (cur_t->str[idx] == -36)
+						cur_t->str[idx] = 36;
+					idx++;
+				}
 				limit = 0;
 			}
 			cur_t = cur_t->next;

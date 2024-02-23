@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:50:45 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/12 13:33:47 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:48:19 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	expansions(t_cmd_line **cmd_line)
 		token = simple_cmd->first_token;
 		while (token)
 		{
-			if (token->type == ARG || token->type == LIMIT)
+			if (token->type == ARG) //token->type == LIMIT
 				expand_cmd(&(token->str), *get_adress_envp());
 			token = token->next;
 		}
