@@ -6,25 +6,25 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:52:06 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/22 18:59:06 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:16:32 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static void close_i_o(t_cmd_line **simple_cmd)
+static void	close_i_o(t_cmd_line **simple_cmd)
 {
 	if ((*simple_cmd)->fd_in != 0 && (*simple_cmd)->fd_in != -1)
 		close((*simple_cmd)->fd_in);
 	if ((*simple_cmd)->fd_out != 1 && (*simple_cmd)->fd_out != -1)
 		close((*simple_cmd)->fd_out);
-	return;
+	return ;
 }
 
-static void handle_builtin(t_cmd_line **simple_cmd, t_cmd_line **cmd_line)
+static void	handle_builtin(t_cmd_line **simple_cmd, t_cmd_line **cmd_line)
 {
-	const char **args;
-	int *status;
+	const char	**args;
+	int			*status;
 
 	status = status_pointer();
 	args = (const char **)(*simple_cmd)->argv;
@@ -38,7 +38,7 @@ static void handle_builtin(t_cmd_line **simple_cmd, t_cmd_line **cmd_line)
 	exit(*status_pointer());
 }
 
-static void exec_command(t_cmd_line **cmd_line, t_cmd_line **simple_cmd)
+static void	exec_command(t_cmd_line **cmd_line, t_cmd_line **simple_cmd)
 {
 	dup2((*simple_cmd)->fd_in, STDIN_FILENO);
 	dup2((*simple_cmd)->fd_out, STDOUT_FILENO);
@@ -52,11 +52,11 @@ static void exec_command(t_cmd_line **cmd_line, t_cmd_line **simple_cmd)
 			exec_binary((*simple_cmd)->argv, cmd_line);
 		}
 	}
-	return;
+	return ;
 }
 
-int fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line,
-				  t_cmd_line **simple_cmd)
+int	fork_and_exec(pid_t *pid, int idx, t_cmd_line **cmd_line,
+		t_cmd_line **simple_cmd)
 {
 	pid[idx] = fork();
 	if (pid[idx] == -1)

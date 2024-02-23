@@ -6,32 +6,33 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:48:11 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/22 18:31:54 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:13:24 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static int is_value_in_env(const char *value)
+static int	is_value_in_env(const char *value)
 {
-	t_env *env;
-	int len;
+	t_env	*env;
+	int		len;
 
 	env = *get_adress_envp();
 	len = ft_strlen(value);
 	while (env)
 	{
-		if (ft_strncmp(env->str, value, len) == 0 && (env->str[len] == '\0' || env->str[len] == '='))
+		if (ft_strncmp(env->str, value, len) == 0 && (env->str[len] == '\0'
+				|| env->str[len] == '='))
 			return (1);
 		env = env->next;
 	}
 	return (0);
 }
 
-int unset(const char **args)
+int	unset(const char **args)
 {
-	int i;
-	int value_in_env;
+	int	i;
+	int	value_in_env;
 
 	i = 1;
 	if (!args[0])

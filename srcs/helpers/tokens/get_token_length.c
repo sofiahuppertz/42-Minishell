@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:55:45 by shuppert          #+#    #+#             */
-/*   Updated: 2023/11/29 13:14:56 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:16:01 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,26 @@
 
 int	get_token_length(char *str, int i)
 {
-	int		token_len;
+	int		toklen;
 	int		extra_quotes;
 	char	c;
 
-	token_len = 0;
+	toklen = 0;
 	extra_quotes = 0;
 	c = ' ';
-	while (str[i + token_len])
+	while (str[i + toklen])
 	{
-		if (str[i + token_len] == ' ' && c == ' ')
+		if (str[i + toklen] == ' ' && c == ' ')
 			break ;
-		if (c == ' ' && (str[i + token_len] == '\''
-				|| str[i + token_len] == '\"'))
-			c = str[i + token_len];
-		else if (c != ' ' && str[i + token_len] == c)
+		if (c == ' ' && (str[i + toklen] == '\'' || str[i + toklen] == '\"'))
+			c = str[i + toklen];
+		else if (c != ' ' && str[i + toklen] == c)
 		{
 			c = ' ';
 			extra_quotes += 2;
 		}
-		token_len++;
+		toklen++;
 	}
-	token_len = token_len - extra_quotes + 1;
-	return (token_len);
+	toklen = toklen - extra_quotes + 1;
+	return (toklen);
 }

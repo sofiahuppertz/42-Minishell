@@ -6,24 +6,22 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:02:44 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/22 19:40:42 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:09:02 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-void envp_to_char(void)
+void	envp_to_char(void)
 {
-
-	t_env *shallow_env;
-	char ***char_envp;
-	char **temp;
-	int count;
-	int idx;
+	t_env	*shallow_env;
+	char	***char_envp;
+	char	**temp;
+	int		count;
+	int		idx;
 
 	shallow_env = *get_adress_envp();
 	count = envp_count(shallow_env);
-
 	delete_char_envp();
 	temp = ft_calloc(sizeof(char *), count + 1);
 	idx = 0;
@@ -36,5 +34,5 @@ void envp_to_char(void)
 	temp[count] = NULL;
 	char_envp = get_adress_char_envp();
 	*char_envp = temp;
-	return;
+	return ;
 }

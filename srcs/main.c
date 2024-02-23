@@ -6,15 +6,15 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:56:30 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/22 18:58:48 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:13:01 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
-volatile sig_atomic_t g_caught_signal;
+volatile sig_atomic_t	g_caught_signal;
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	init_envp(envp);
 	run_shell();

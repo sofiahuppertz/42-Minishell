@@ -6,15 +6,15 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:47:52 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/22 19:32:46 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:12:47 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-static int print_error(int status, const char *arg)
+static int	print_error(int status, const char *arg)
 {
-	int i;
+	int	i;
 
 	if (status == -1)
 		ft_putstr_fd("export: not valid in this context: ", 2);
@@ -30,11 +30,11 @@ static int print_error(int status, const char *arg)
 	return (1);
 }
 
-static char *get_value(const char *arg, int status)
+static char	*get_value(const char *arg, int status)
 {
-	char *value;
-	int i;
-	int len;
+	char	*value;
+	int		i;
+	int		len;
 
 	i = 0;
 	if (status == 1)
@@ -51,9 +51,9 @@ static char *get_value(const char *arg, int status)
 	return (value);
 }
 
-static int handle_add_new_vars(const char *arg, int status, t_env **env)
+static int	handle_add_new_vars(const char *arg, int status, t_env **env)
 {
-	char *value;
+	char	*value;
 
 	if (status == 3)
 	{
@@ -66,11 +66,11 @@ static int handle_add_new_vars(const char *arg, int status, t_env **env)
 	return (status);
 }
 
-static int handle_arg(const char *arg, t_env **env, int status)
+static int	handle_arg(const char *arg, t_env **env, int status)
 {
-	int value_in_env;
-	char *name;
-	char *value;
+	int		value_in_env;
+	char	*name;
+	char	*value;
 
 	name = envp_get_var(arg);
 	value_in_env = envp_is_value_in_env(name);
@@ -86,10 +86,10 @@ static int handle_arg(const char *arg, t_env **env, int status)
 	return (status);
 }
 
-int export(const char **args, t_env **env, int fd)
+int	export(const char **args, t_env **env, int fd)
 {
-	int status;
-	int idx;
+	int	status;
+	int	idx;
 
 	if (!args[1])
 	{
@@ -104,7 +104,7 @@ int export(const char **args, t_env **env, int fd)
 		{
 			print_error(status, args[idx]);
 			idx += 1;
-			continue;
+			continue ;
 		}
 		status = handle_arg(args[idx], env, status);
 		idx += 1;

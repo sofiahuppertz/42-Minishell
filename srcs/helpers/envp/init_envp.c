@@ -6,16 +6,16 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:50:30 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/22 18:38:30 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:08:17 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-int init_envp(char **envp)
+int	init_envp(char **envp)
 {
-	t_env **env;
-	int i;
+	t_env	**env;
+	int		i;
 
 	i = 0;
 	env = get_adress_envp();
@@ -23,7 +23,6 @@ int init_envp(char **envp)
 	{
 		if (envp_add_var(envp[i], env) == -1)
 			return (1);
-		//(*env)->declare = 0;
 		i++;
 	}
 	init_shell_level();

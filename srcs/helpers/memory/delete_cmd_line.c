@@ -6,15 +6,15 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:40:48 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/22 18:58:30 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:09:36 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/minishell.h"
 
-void delete_cmd_line(t_cmd_line **cmd_line)
+void	delete_cmd_line(t_cmd_line **cmd_line)
 {
-	t_cmd_line *temp;
+	t_cmd_line	*temp;
 
 	if (cmd_line)
 	{
@@ -37,5 +37,5 @@ void delete_cmd_line(t_cmd_line **cmd_line)
 			*cmd_line = temp;
 		}
 	}
-	return;
+	return ;
 }

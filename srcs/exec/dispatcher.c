@@ -6,7 +6,7 @@
 /*   By: shuppert <shuppert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:46:41 by shuppert          #+#    #+#             */
-/*   Updated: 2024/02/11 17:37:03 by shuppert         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:13:59 by shuppert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	dispatcher(t_cmd_line **cmd_line, pid_t *pid, int num_cmds)
 		{
 			redir(&simple_cmd);
 			*status = exec_builtin((const char **)(*cmd_line)->argv,
-					(*cmd_line)->fd_out, 0);
+									(*cmd_line)->fd_out,
+									0);
 		}
 		else
 			handle_multiple_commands(num_cmds, pid, &cmd_line, &simple_cmd);
